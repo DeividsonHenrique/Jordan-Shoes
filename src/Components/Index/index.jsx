@@ -1,11 +1,46 @@
+import { useEffect } from "react";
+import { useState } from "react";
+import {
+  Body,
+  Top_Fixed,
+  Hero,
+  Hero_Content,
+  Main,
+  Produtos,
+  Heading,
+  ListaProdutos,
+  Card,
+  Figure,
+  CardDetalhes,
+} from "./style";
+
 function Index() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const buscarProdutos = async () => {
+      try {
+        const response = await fetch("/Data/products.json");
+        if (!response.ok) {
+          throw new Error("Erro ao buscar os produtos.");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+      }
+    };
+
+    buscarProdutos();
+  }, []);
+
   return (
     <>
-      <body>
-        <section className="top_fixed">Frete Gratis para todo Brasil</section>
+      <Body>
+        <Top_Fixed>Frete Gratis para todo Brasil</Top_Fixed>
 
-        <section className="hero">
-          <div className="hero_content">
+        <Hero className="hero">
+          <Hero_Content className="hero_content">
             <h1>
               <img src="public/images/logo-jordan.svg" alt="" />
               Jordan Shoes
@@ -16,83 +51,36 @@ function Index() {
               O tênis Jordan é fruto de uma velha e forte <br /> parceria entre
               a nike e o jogador Michael Jordan.
             </p>
-          </div>
-        </section>
+          </Hero_Content>
+        </Hero>
 
-        <main>
-          <section className="produtos">
-            <div className="heading">
-                <h3>Os melhores em só lugar</h3>
-                <p>
+        <Main>
+          <Produtos>
+            <Heading>
+              <h3>Os melhores em só lugar</h3>
+              <p>
                 A marca Jordan na JordanShoes é a escolha certa para os amanetes
                 sneakers que buscam estilo e conforto.
-                </p>
-            </div>
-          
-    
-          <section className="lista_produtos">
+              </p>
+            </Heading>
 
-            <div className="card">
-              <figure>
-                <img
-                    src="public/images/Shoes/air-jordan-1-high-zoom-cmft-tropical-twist-1-400.png"
-                    alt=""
-                />
-              </figure>
-              <div className="card_detalhes">
-                <h4>Air Jordan 1 high zoom CMFT Tropical Twist</h4>
-                <h5>Tênis Air Jordan</h5>
-              </div>
-              <h6>1.049,00</h6>
-            </div>
-
-            <div className="card">
-              <figure>
-                <img
-                    src="public/images/Shoes/air-jordan-1-high-zoom-cmft-tropical-twist-1-400.png"
-                    alt=""
-                />
-              </figure>
-              <div className="card_detalhes">
-                <h4>Air Jordan 1 high zoom CMFT Tropical Twist</h4>
-                <h5>Tênis Air Jordan</h5>
-              </div>
-              <h6>1.049,00</h6>
-            </div>
-            
-            <div className="card">
-              <figure>
-                <img
-                    src="public/images/Shoes/air-jordan-1-high-zoom-cmft-tropical-twist-1-400.png"
-                    alt=""
-                />
-              </figure>
-              <div className="card_detalhes">
-                <h4>Air Jordan 1 high zoom CMFT Tropical Twist</h4>
-                <h5>Tênis Air Jordan</h5>
-              </div>
-              <h6>1.049,00</h6>
-            </div>
-
-            <div className="card">
-              <figure>
-                <img
-                    src="public/images/Shoes/air-jordan-1-high-zoom-cmft-tropical-twist-1-400.png"
-                    alt=""
-                />
-              </figure>
-              <div className="card_detalhes">
-                <h4>Air Jordan 1 high zoom CMFT Tropical Twist</h4>
-                <h5>Tênis Air Jordan</h5>
-              </div>
-              <h6>1.049,00</h6>
-            </div>
-
-
-          </section>
-          </section>
-        </main>
-      </body>
+            <ListaProdutos>
+              {products.map((p) => (
+                <Card className="card" key={p.id}>
+                  <Figure>
+                    <img src={p.image} alt={p.product_name} />
+                  </Figure>
+                  <CardDetalhes>
+                    <h4>{p.product_name}</h4>
+                    <h5>{p.product_model}</h5>
+                  </CardDetalhes>
+                  <h6>{p.price}</h6>
+                </Card>
+              ))}
+            </ListaProdutos>
+          </Produtos>
+        </Main>
+      </Body>
     </>
   );
 }

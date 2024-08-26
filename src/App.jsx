@@ -1,10 +1,11 @@
 import Index from './Components/Index'
-import './App.css'
+import { GlobalStyle } from './Components/Index/style'
 
 function App() {
 
   return (
     <>
+      <GlobalStyle />
       <Index />
     </>
   )
