@@ -165,7 +165,7 @@ export const Heading = styled.div`
       line-height: 24px;
     }
   }
-`;
+`
 
 export const ListaProdutos = styled.section`
   width: 100%;
