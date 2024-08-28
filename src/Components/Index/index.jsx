@@ -34,15 +34,22 @@ function Index() {
     buscarProdutos();
   }, []);
 
+  const formatCurrency = (number) => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(number);
+  };
+
   return (
     <>
       <Body>
         <Top_Fixed>Frete Gratis para todo Brasil</Top_Fixed>
 
-        <Hero className="hero">
-          <Hero_Content className="hero_content">
+        <Hero>
+          <Hero_Content>
             <h1>
-              <img src="public/images/logo-jordan.svg" alt="" />
+              <img src="/images/logo-jordan.svg" alt="" />
               Jordan Shoes
             </h1>
 
@@ -66,7 +73,7 @@ function Index() {
 
             <ListaProdutos>
               {products.map((p) => (
-                <Card className="card" key={p.id}>
+                <Card key={p.id}>
                   <Figure>
                     <img src={p.image} alt={p.product_name} />
                   </Figure>
@@ -74,7 +81,7 @@ function Index() {
                     <h4>{p.product_name}</h4>
                     <h5>{p.product_model}</h5>
                   </CardDetalhes>
-                  <h6>{p.price}</h6>
+                  <h6>{formatCurrency(p.price) || p.price}</h6>
                 </Card>
               ))}
             </ListaProdutos>

@@ -51,7 +51,7 @@ export const Top_Fixed = styled.section`
 export const Hero = styled.section`
   width: 100%;
   height: 400px;
-  background-image: url("../public/images/image-michael-jordan.png");
+  background-image: url("/images/image-michael-jordan.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center bottom;
@@ -115,6 +115,7 @@ export const Main = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 export const Produtos = styled.section`
