@@ -219,6 +219,11 @@ export const Figure = styled.figure`
   display: flex;
   align-items: center;
   justify-content: center;
+
+    &:hover{
+      cursor: pointer;
+      border: 2px solid var(--brand_color);
+    }
 `;
 
 export const CardDetalhes = styled.div`

@@ -1,5 +1,6 @@
 import {Main} from '../Components/Index/style';
 import "../index.css";
+import {Link} from 'react-router-dom';
 
 function DetailProducts() {
     return(
@@ -7,6 +8,9 @@ function DetailProducts() {
         <>
 
         <Main>
+
+            <div className='voltar'>Voltar</div>
+            <Link className='voltar' to="/">Voltar</Link>
 
         <div className='produtos_detalhes'>
             <div className="detalhes_imagens">
@@ -45,7 +49,10 @@ function DetailProducts() {
                 </div>
 
                 <div className="tamanho">
-                    tamanho
+                    <h5>Tamanho</h5>
+                    <div className='tamanhos'>
+                        38 até 51
+                    </div>
                 </div>
 
                 <div className="botão">
@@ -65,16 +72,17 @@ function DetailProducts() {
                 </div>
 
                 <details className="frete">
-                    <summary>Calcular frete e entrega</summary>
+                    <summary className="icone_expandir">Calcular frete e entrega</summary>
                     <p>Calcule o frete e o prazo de entrega para o sua região</p>
 
                     <label htmlFor="">Insira o CEP</label>
 
-                    <input type="text" placeholder="00000-000" />
+                    <div className='input'>
+                        <input type="text" placeholder="00000-000" />
+                        <button type="button">Calcular</button>
+                    </div>
 
-                    <button type="button">Calcular</button>
-
-                    <a href="#">Não sei meu CEP</a>
+                    <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener noreferrer">Não sei meu CEP</a>
                 </details>
 
             </div>

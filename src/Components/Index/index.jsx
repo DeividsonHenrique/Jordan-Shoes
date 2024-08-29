@@ -41,6 +41,11 @@ function Index() {
     }).format(number);
   };
 
+
+// addEventListener("click", () => {
+//   console.log('clicou')
+// });
+
   return (
     <>
       <Body>
@@ -71,19 +76,19 @@ function Index() {
               </p>
             </Heading>
 
-            <ListaProdutos>
-              {products.map((p) => (
-                <Card key={p.id}>
-                  <Figure>
-                    <img src={p.image} alt={p.product_name} />
-                  </Figure>
-                  <CardDetalhes>
-                    <h4>{p.product_name}</h4>
-                    <h5>{p.product_model}</h5>
-                  </CardDetalhes>
-                  <h6>{formatCurrency(p.price) || p.price}</h6>
-                </Card>
-              ))}
+            <ListaProdutos to="/p">
+                {products.map((p) => (
+                  <Card key={p.id}>
+                    <Figure>
+                      <img src={p.image} alt={p.product_name} />
+                    </Figure>
+                    <CardDetalhes>
+                      <h4>{p.product_name}</h4>
+                      <h5>{p.product_model}</h5>
+                    </CardDetalhes>
+                    <h6>{formatCurrency(p.price) || p.price}</h6>
+                  </Card>
+                ))}
             </ListaProdutos>
           </Produtos>
         </Main>

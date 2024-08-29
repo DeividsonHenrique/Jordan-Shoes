@@ -12,6 +12,12 @@
     gap: 32px;
 }
 
+.detalhes{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .detalhes_imagens{
     /* border: 1px solid red; */
     display: grid;
@@ -31,18 +37,17 @@
 
 
 .detalhes h4{
-    font-size: 18px;
-    line-height: 28px;
+    font-size: 24px;
 }
 
 .detalhes h5{
     font-size: 16px;
-    line-height: 26px;
     color: var(--brand_color);
 }
 
 .detalhes h6{
-    font-size: 18px;
+    font-size: 24px;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 
@@ -63,4 +68,135 @@
     border: 0;
     cursor: pointer;
     font-size: 16px;
+}
+
+
+.tamanho h5{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.tamanhos{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.numeros{
+    height: 40px;
+    border: 1px solid #ccc;
+}
+
+
+.descricão{
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+}
+
+.descricão p{
+    margin-bottom: 10px;
+}
+
+.descricão ul{
+    margin-left: 20px;
+}
+
+
+
+/* frete */
+
+details::marker,
+summary::marker{
+    content: " ";
+}
+
+summary{
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    height: 24px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px
+}
+
+.icone_expandir::after,
+.icone_recolher::after{
+    content: " ";
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    background-image: url('/public/images/icon_expand_more.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 5px;
+}
+
+.icone_recolher::after{
+    background-image: url('/public/images/icon_expand_less.svg');
+}
+
+
+details{
+    font-size: 16px;
+}
+
+details p{
+    margin-bottom: 15px;
+}
+
+label{
+    margin-bottom: 5px;
+}
+
+.input{
+    margin-block: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input input{
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.input button{
+    font-size: 16px;
+    font-weight: 500;
+    width: 120px;
+    height: 40px;
+    background-color: var(--white);
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 5px;
+    right: 0px;
+    margin-right: 5px;
+}
+
+
+.input button:hover{
+    border-color: #222;
+}
+
+.voltar{
+    text-decoration: none;
+    color: black;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.voltar:hover{
+    cursor: pointer;
+    border: 1px solid var(--brand_color);
 }
