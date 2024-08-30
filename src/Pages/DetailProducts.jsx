@@ -2,7 +2,7 @@ import {Main} from '../Components/Index/style';
 import "../index.css";
 import {Link} from 'react-router-dom';
 
-function DetailProducts() {
+function DetailProducts({ products }) {
     return(
 
         <>
@@ -43,7 +43,7 @@ function DetailProducts() {
             <div className="detalhes_info">
 
                 <div className="detalhes">
-                    <h4>Nome do produto</h4>
+                    <h4></h4>
                     <h5>Descrição</h5>
                     <h6>Modelo</h6>
                 </div>

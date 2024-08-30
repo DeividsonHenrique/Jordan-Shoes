@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useParams } from "react";
 import {
   Body,
   Top_Fixed,
@@ -15,6 +15,7 @@ import {
 } from "./style";
 
 function Index() {
+  // const { id } = useParams();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
