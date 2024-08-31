@@ -24,6 +24,7 @@ function DetailProducts({ products }) {
                     <img src="/images/Shoes/air-jordan-1-mid-dutch-green-1-400.png" alt="" />
                 </figure>
                 <figure>
+                    
                     <img src="/images/Shoes/air-jordan-1-mid-dutch-green-1-400.png" alt="" />
                 </figure>
                 <figure>
