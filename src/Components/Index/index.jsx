@@ -14,6 +14,7 @@ import {
   CardDetalhes,
 } from "./style";
 
+
 function Index() {
   // const { id } = useParams();
   const [products, setProducts] = useState([]);
