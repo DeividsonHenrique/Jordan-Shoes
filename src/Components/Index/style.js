@@ -34,7 +34,7 @@ export const Top_Fixed = styled.section`
   height: 64px;
   background-color: var(--white_soft);
   font-weight: 500;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 
@@ -49,6 +49,7 @@ export const Top_Fixed = styled.section`
 `;
 
 export const Hero = styled.section`
+  margin-top: 50px;
   width: 100%;
   height: 400px;
   background-image: url("/images/image-michael-jordan.png");
@@ -197,6 +198,11 @@ export const Card = styled.div`
   h4 {
     font-size: 18px;
     line-height: 28px;
+    //ajuste para não quebrar a linha
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   h6 {

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useState, useParams } from "react";
+import { useState } from "react";
 import {
   Body,
   Top_Fixed,
@@ -14,10 +14,14 @@ import {
   CardDetalhes,
 } from "./style";
 
+import Topo from "../Topo";
+
+import DetailProducts from "../../Pages/DetailProducts"
+
 
 function Index() {
-  // const { id } = useParams();
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     const buscarProdutos = async () => {
@@ -44,14 +48,18 @@ function Index() {
     }).format(number);
   };
 
+  const handleCardClick = (product) => {
+    setSelectedProduct(product); // Atualiza o produto selecionado ao clicar no card
+  };
 
-// addEventListener("click", () => {
-//   console.log('clicou')
-// });
+  const handleCloseDetails = () => {
+    setSelectedProduct(null); // Reseta o produto selecionado para voltar à lista de produtos
+  };
 
   return (
     <>
       <Body>
+        <Topo />
         <Top_Fixed>Frete Gratis para todo Brasil</Top_Fixed>
 
         <Hero>
@@ -79,9 +87,12 @@ function Index() {
               </p>
             </Heading>
 
-            <ListaProdutos to="/p">
+            {selectedProduct ? (
+              <DetailProducts product={selectedProduct} onClose={handleCloseDetails} />
+            ) : (
+              <ListaProdutos>
                 {products.map((p) => (
-                  <Card key={p.id}>
+                  <Card key={p.id} onClick={() => handleCardClick(p)}> {/* Adiciona um evento onClick */}
                     <Figure>
                       <img src={p.image} alt={p.product_name} />
                     </Figure>
@@ -92,7 +103,9 @@ function Index() {
                     <h6>{formatCurrency(p.price) || p.price}</h6>
                   </Card>
                 ))}
-            </ListaProdutos>
+              </ListaProdutos>
+            )}
+            
           </Produtos>
         </Main>
       </Body>

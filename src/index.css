@@ -85,6 +85,24 @@
 .numeros{
     height: 40px;
     border: 1px solid #ccc;
+
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.numeros:hover{
+    border: 1px solid var(--dark);
+    cursor: pointer;
+}
+
+.radio{
+    display: none;
+}
+
+.selecionado{
+    border-color: var(--dark);
 }
 
 
@@ -123,7 +141,7 @@ summary{
 
 .icone_expandir::after,
 .icone_recolher::after{
-    content: " ";
+    content: "";
     display: inline-flex;
     width: 20px;
     height: 20px;
@@ -131,12 +149,15 @@ summary{
     background-size: contain;
     background-repeat: no-repeat;
     margin-left: 5px;
+    background-color: gray;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
 }
 
 .icone_recolher::after{
     background-image: url('/public/images/icon_expand_less.svg');
+    background-color: var(--dark);
 }
-
 
 details{
     font-size: 16px;
