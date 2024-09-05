@@ -3,7 +3,7 @@ import {Main} from '../Components/Index/style';
 import "../index.css";
 import { useState } from "react";
 
-function DetailProducts({ product, onClose }) {
+function DetailProducts({ product, onClose, onAddToCart }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDetails = () => {
@@ -57,6 +57,7 @@ function DetailProducts({ product, onClose }) {
             <div className="detalhes_info">
 
                 <div className="detalhes">
+                    <span>ID: {product.id}</span>
                     <h4>{product.product_name}</h4>
                     <h5>{product.product_model}</h5>
                     <h6>{formatCurrency(product.price)}</h6>
@@ -120,11 +121,11 @@ function DetailProducts({ product, onClose }) {
                         <label htmlFor="size51" className="numeros">51</label>
                     </div>
                 </div>
-
+                
                 <div className="botão">
-                    <button type="button">Adicionar ao carrinho</button>
+                    <button type="button" onClick={handleAddToCart}>Adicionar ao carrinho</button>
                 </div>
-
+                
                 <div className="descricão">
                     <p>Inspirado no AJ1 original, essa edição cano médio mantém o visual icônico que você ama, enquanto a escolha de cores e o couro conferem uma identidade distinta.</p>
 

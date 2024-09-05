@@ -56,6 +56,10 @@ function Index() {
     setSelectedProduct(null); // Reseta o produto selecionado para voltar à lista de produtos
   };
 
+  const handleAddToCart = (product) => {
+    console.log("Adicionar ao carrinho:", product);
+  };
+
   return (
     <>
       <Body>
@@ -88,7 +92,7 @@ function Index() {
             </Heading>
 
             {selectedProduct ? (
-              <DetailProducts product={selectedProduct} onClose={handleCloseDetails} />
+              <DetailProducts product={selectedProduct} onClose={handleCloseDetails} onAddToCart={handleAddToCart} />
             ) : (
               <ListaProdutos>
                 {products.map((p) => (
