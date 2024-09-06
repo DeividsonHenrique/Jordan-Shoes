@@ -30,7 +30,6 @@ export const TopoMarca = styled.div`
         font-size: 24px;
     }
 `
-
 export const BtnCarrinho = styled.div`
     position: relative;
     display: inline-block;
