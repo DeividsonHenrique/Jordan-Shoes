@@ -175,8 +175,8 @@ export const Summary = styled.summary`
     transition: all 0.3s ease-in-out;
     background-image: ${({ isOpen }) =>
       isOpen
-        ? "url('/public/images/icon_expand_more.svg')"
-        : "url('/public/images/icon_expand_less.svg')"};
+        ? "url('images/icon_expand_more.svg')"
+        : "url('images/icon_expand_less.svg')"};
     background-color: ${({ isOpen }) => (isOpen ? "var(--dark)" : "gray")};
   }
 `;
