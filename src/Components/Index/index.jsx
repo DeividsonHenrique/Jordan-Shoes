@@ -16,8 +16,7 @@ import {
 
 import Topo from "../Topo";
 
-import DetailProducts from "../../Pages/DetailProducts"
-
+import DetailProducts from "../../Pages/DetailProducts";
 
 function Index() {
   const [products, setProducts] = useState([]);
@@ -35,7 +34,6 @@ function Index() {
       } catch (error) {
         console.error("Erro na requisição:", error);
       }
-      
     };
 
     buscarProdutos();
@@ -92,11 +90,17 @@ function Index() {
             </Heading>
 
             {selectedProduct ? (
-              <DetailProducts product={selectedProduct} onClose={handleCloseDetails} onAddToCart={handleAddToCart} />
+              <DetailProducts
+                product={selectedProduct}
+                onClose={handleCloseDetails}
+                onAddToCart={handleAddToCart}
+              />
             ) : (
               <ListaProdutos>
                 {products.map((p) => (
-                  <Card key={p.id} onClick={() => handleCardClick(p)}> {/* Adiciona um evento onClick */}
+                  <Card key={p.id} onClick={() => handleCardClick(p)}>
+                    {" "}
+                    {/* Adiciona um evento onClick */}
                     <Figure>
                       <img src={p.image} alt={p.product_name} />
                     </Figure>
@@ -109,7 +113,6 @@ function Index() {
                 ))}
               </ListaProdutos>
             )}
-            
           </Produtos>
         </Main>
       </Body>
