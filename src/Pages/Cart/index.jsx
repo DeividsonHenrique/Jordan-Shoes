@@ -1,7 +1,6 @@
 import Topo from "../../Components/Topo";
 import "../../index.css";
 import { Carrinho, Table, ColunaApagar, ColunaApagarTh, Tfoot } from "./style";
-
 function Cart() {
   return (
     <>
