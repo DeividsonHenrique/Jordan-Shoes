@@ -7,7 +7,8 @@ function Cart() {
       <Topo />
       <Carrinho>
         <h2>Carrinho</h2>
-        <Table>
+        <Table> 
+          
           <thead>
             <tr>
               <th>id</th>
