@@ -87,25 +87,25 @@ export const Hero_Content = styled.div`
   }
 
   @media (max-width: 768px) {
-    h1{
+    h1 {
       font-size: 18px;
     }
 
-    h2{
+    h2 {
       font-size: 24px;
     }
 
-    p{
+    p {
       font-size: 18px;
       line-height: 28px;
     }
-}
+  }
 
-    @media (max-width: 375px) {
-        p{
-            font-size: 16px;
-            line-height: 26px;
-        }
+  @media (max-width: 375px) {
+    p {
+      font-size: 16px;
+      line-height: 26px;
+    }
   }
 `;
 
@@ -167,7 +167,7 @@ export const Heading = styled.div`
       line-height: 24px;
     }
   }
-`
+`;
 
 export const ListaProdutos = styled.section`
   width: 100%;
@@ -186,14 +186,13 @@ export const ListaProdutos = styled.section`
 
   @media (max-width: 375px) {
     margin-block: 24px;
-    gap: 24px; 
+    gap: 24px;
   }
 `;
 
 export const Card = styled.div`
   width: 326px;
   height: 326px;
-  
 
   h4 {
     font-size: 18px;
@@ -212,7 +211,7 @@ export const Card = styled.div`
   }
 
   @media (max-width: 768px) {
-    h6{
+    h6 {
       font-size: 20px;
     }
   }
@@ -226,10 +225,10 @@ export const Figure = styled.figure`
   align-items: center;
   justify-content: center;
 
-    &:hover{
-      cursor: pointer;
-      border: 2px solid var(--brand_color);
-    }
+  &:hover {
+    cursor: pointer;
+    border: 2px solid var(--brand_color);
+  }
 `;
 
 export const CardDetalhes = styled.div`
@@ -242,21 +241,20 @@ export const CardDetalhes = styled.div`
   }
 
   @media (max-width: 768px) {
-    h4{
+    h4 {
       font-size: 18px;
     }
 
-    h5{
+    h5 {
       font-size: 16px;
     }
   }
 
   @media (max-width: 375px) {
-    h4{
+    h4 {
       font-size: 16px;
     }
   }
-`
+`;
 
-
-// Responsivo 
+// Responsivo

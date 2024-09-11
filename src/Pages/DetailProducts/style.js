@@ -97,6 +97,11 @@ export const Numeros = styled.label`
     border: 1px solid var(--dark);
     cursor: pointer;
   }
+
+  ${Radio}:checked + & {
+    background-color: var(--dark);
+    color: var(--white);
+  }
 `;
 
 export const Botao = styled.div`
@@ -158,9 +163,6 @@ export const Summary = styled.summary`
     &::marker{
         content: " ";
     }
-
-
-
 
     &::after {
     content: "";

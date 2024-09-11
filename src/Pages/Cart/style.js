@@ -1,4 +1,18 @@
 import styled from "styled-components";
+import { FaTrash } from "react-icons/fa";
+
+export const Remover = styled(FaTrash)`
+  color: var(--dark);
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: red;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+  }
+`;
 
 export const Carrinho = styled.section`
   display: block; /* block */
@@ -26,6 +40,7 @@ export const Table = styled.table`
 
   td {
     padding-inline: 10px;
+    text-align: center;
   }
 `;
 
@@ -42,8 +57,13 @@ export const ColunaApagar = styled.td`
 export const ColunaApagarTh = styled.th`
   width: 65px;
   text-align: center;
+  col
 `;
 
 export const Tfoot = styled.tfoot`
   text-align: right;
+
+  td {
+    text-align: right;
+  }
 `;
