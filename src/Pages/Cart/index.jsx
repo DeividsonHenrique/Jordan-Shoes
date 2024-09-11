@@ -1,7 +1,10 @@
+/* eslint-disable react/prop-types */
 import Topo from "../../Components/Topo";
 import "../../index.css";
 import { Carrinho, Table, ColunaApagar, ColunaApagarTh, Tfoot } from "./style";
-function Cart() {
+function Cart({ cartItems  }) {
+  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+  
   return (
     <>
       <Topo />
@@ -11,7 +14,7 @@ function Cart() {
           
           <thead>
             <tr>
-              <th>id</th>
+              <th>ID</th>
               <th>Produto</th>
               <th>Tamanho</th>
               <th>Preço</th>
@@ -19,20 +22,22 @@ function Cart() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <ColunaApagar>-</ColunaApagar>
-            </tr>
+          {cartItems.map((item, index) => (
+            <tr key={index}>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>{item.size}</td>
+              <td>{item.price}</td>
+                <ColunaApagar>-</ColunaApagar>
+              </tr>
+            ))}
           </tbody>
           <Tfoot>
             <tr>
               <td colSpan="3">
-                <strong>TOTAL</strong>
+                <strong>Total:</strong>
               </td>
-              <ColunaApagar>-</ColunaApagar>
+              <ColunaApagar>{totalPrice}</ColunaApagar>
               <td></td>
             </tr>
           </Tfoot>
