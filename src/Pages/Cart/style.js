@@ -67,3 +67,9 @@ export const Tfoot = styled.tfoot`
     text-align: right;
   }
 `;
+
+
+
+
+
+

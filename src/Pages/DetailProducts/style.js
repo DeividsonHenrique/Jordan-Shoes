@@ -49,6 +49,10 @@ export const Detalhes = styled.div`
   gap: 10px;
   margin-bottom: 20px;
 
+  span {
+    display: none;
+  }
+
   h4 {
     font-size: 24px;
   }

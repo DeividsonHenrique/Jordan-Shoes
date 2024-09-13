@@ -1,4 +1,5 @@
 import Topo from "../../Components/Topo";
+import "../../index.css";
 import {
   Carrinho,
   Table,
@@ -23,6 +24,12 @@ function Cart() {
       currency: "BRL",
     }).format(number);
   };
+
+  const valorFrete = 0
+
+  const valorDesconto = 0
+
+  const totalDaCompra = totalPrice + valorFrete - valorDesconto
 
   return (
     <>
@@ -64,6 +71,50 @@ function Cart() {
             </tr>
           </Tfoot>
         </Table>
+
+        <div className="carrinho__detalhes">
+            <div className="Frete">
+              <label htmlFor="cep2">Prazo de entrega</label>
+            <div className="input">
+            <input type="text" id="cep2" placeholder="00000-000" />
+            <button type="button" className="btn_calcular">Calcular</button>
+        </div>
+        <p>Tempo previsto para entrega</p>
+        <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener noreferrer">Não sei meu CEP</a>
+            </div>
+
+            <div className="cupom">
+            <label htmlFor="cupom">Cupom de Desconto</label>
+        <div className="input">
+            <input type="text" id="cupom" />
+            <button type="button" className="btn_aplicar">Aplicar</button>
+        </div>
+        <span className="desconto_cupom"></span>
+            </div>
+
+            <div className="resumo">
+            <h3>Resumo</h3>
+        <ul>
+            <li>
+                <span>Valor dos produtos</span>
+                <span className="sub_total">{formatCurrency(totalPrice)}</span>
+            </li>
+            <li>
+                <span>Frete</span>
+                <span className="valor_frete">{formatCurrency(valorFrete)}</span>
+            </li>
+            <li>
+                <span>Desconto</span>
+                <span className="valor_desconto">{formatCurrency(valorDesconto)}</span>
+            </li>
+            <li>
+                <span>Total da compra</span>
+                <span className="total_compra">{formatCurrency(totalDaCompra)}</span>
+            </li>
+        </ul>
+        <button type="button" className="btn_continuar">Continuar</button>
+            </div>
+        </div>
       </Carrinho>
     </>
   );

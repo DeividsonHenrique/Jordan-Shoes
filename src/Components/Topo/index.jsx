@@ -4,7 +4,6 @@ import { useCart } from "../../CartContext.jsx";
 
 function Topo() {
   const { cartItems } = useCart();
-
   return (
     <>
       <Header>
@@ -19,7 +18,9 @@ function Topo() {
         <Link to="/cart">
           <BtnCarrinho>
             <Icone />
-            <Numerositens>{cartItems.length}</Numerositens>
+            {cartItems.length > 0 && (
+              <Numerositens>{cartItems.length}</Numerositens>
+            )}
           </BtnCarrinho>
         </Link>
       </Header>
