@@ -7,6 +7,12 @@ import {
   ColunaApagarTh,
   Remover,
   Tfoot,
+  CarrinhoDetalhes,
+  Prazo,
+  Input,
+  BtnCalcular,
+  BtnContinuar,
+  Resumo,
 } from "./style";
 import { useCart } from "../../CartContext.jsx";
 function Cart() {
@@ -25,11 +31,11 @@ function Cart() {
     }).format(number);
   };
 
-  const valorFrete = 0
+  const valorFrete = 0;
 
-  const valorDesconto = 0
+  const valorDesconto = 0;
 
-  const totalDaCompra = totalPrice + valorFrete - valorDesconto
+  const totalDaCompra = totalPrice + valorFrete - valorDesconto;
 
   return (
     <>
@@ -72,49 +78,61 @@ function Cart() {
           </Tfoot>
         </Table>
 
-        <div className="carrinho__detalhes">
-            <div className="Frete">
-              <label htmlFor="cep2">Prazo de entrega</label>
-            <div className="input">
-            <input type="text" id="cep2" placeholder="00000-000" />
-            <button type="button" className="btn_calcular">Calcular</button>
-        </div>
-        <p>Tempo previsto para entrega</p>
-        <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener noreferrer">Não sei meu CEP</a>
-            </div>
+        <CarrinhoDetalhes className="carrinho__detalhes">
+          <Prazo>
+            <label htmlFor="cep2">Prazo de entrega</label>
+            <Input>
+              <input type="number" id="cep2" placeholder="00000-000" />
+              <BtnCalcular>Calcular</BtnCalcular>
+            </Input>
+            <p>Tempo previsto para entrega</p>
+            <a
+              href="https://buscacepinter.correios.com.br/app/endereco/index.php"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Não sei meu CEP
+            </a>
+          </Prazo>
 
-            <div className="cupom">
+          <div className="cupom">
             <label htmlFor="cupom">Cupom de Desconto</label>
-        <div className="input">
-            <input type="text" id="cupom" />
-            <button type="button" className="btn_aplicar">Aplicar</button>
-        </div>
-        <span className="desconto_cupom"></span>
-            </div>
+            <Input>
+              <input type="text" id="cupom" />
+              <BtnCalcular>Aplicar</BtnCalcular>
+            </Input>
+            <span className="desconto_cupom"></span>
+          </div>
 
-            <div className="resumo">
+          <Resumo className="resumo">
             <h3>Resumo</h3>
-        <ul>
-            <li>
+            <ul>
+              <li>
                 <span>Valor dos produtos</span>
                 <span className="sub_total">{formatCurrency(totalPrice)}</span>
-            </li>
-            <li>
+              </li>
+              <li>
                 <span>Frete</span>
-                <span className="valor_frete">{formatCurrency(valorFrete)}</span>
-            </li>
-            <li>
+                <span className="valor_frete">
+                  {formatCurrency(valorFrete)}
+                </span>
+              </li>
+              <li>
                 <span>Desconto</span>
-                <span className="valor_desconto">{formatCurrency(valorDesconto)}</span>
-            </li>
-            <li>
+                <span className="valor_desconto">
+                  {formatCurrency(valorDesconto)}
+                </span>
+              </li>
+              <li>
                 <span>Total da compra</span>
-                <span className="total_compra">{formatCurrency(totalDaCompra)}</span>
-            </li>
-        </ul>
-        <button type="button" className="btn_continuar">Continuar</button>
-            </div>
-        </div>
+                <span className="total_compra">
+                  {formatCurrency(totalDaCompra)}
+                </span>
+              </li>
+            </ul>
+            <BtnContinuar to="/identification">Continuar</BtnContinuar>
+          </Resumo>
+        </CarrinhoDetalhes>
       </Carrinho>
     </>
   );
