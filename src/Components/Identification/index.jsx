@@ -1,5 +1,4 @@
 import Topo from "../../Components/Topo";
-import "../../index.css";
 import {
   IdAndPayment,
   InputId,
