@@ -4,12 +4,13 @@ import Cart from "./Pages/Cart";
 import Identification from "./Components/Identification/index.jsx";
 import Payment from "./Components/Payment/index.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CartProvider } from "./CartContext.jsx";
+import { CartProvider, FormProvider } from "./CartContext.jsx";
 
 function AppRoutes() {
   return (
     <>
       <CartProvider>
+        <FormProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -19,6 +20,7 @@ function AppRoutes() {
             <Route path="/payment" element={<Payment />} />
           </Routes>
         </BrowserRouter>
+        </FormProvider>
       </CartProvider>
     </>
   );

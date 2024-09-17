@@ -235,6 +235,18 @@ export const IdAndPayment = styled.section`
   }
 `;
 
+export const Error = styled.span`
+  color: red;
+  margin-left: 5px;
+`
+
+export const Invalido = styled.span`
+  border-color: red !important;
+`
+export const Valido = styled.span`
+  border-color: green !important;
+`
+
 export const Bloco = styled.div`
   width: 100%;
   margin-block: 20px;

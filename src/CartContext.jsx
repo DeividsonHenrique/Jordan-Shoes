@@ -18,7 +18,7 @@ export function CartProvider({ children }) {
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeItemFromCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeItemFromCart}}>
       {children}
     </CartContext.Provider>
   );
@@ -28,3 +28,33 @@ export function CartProvider({ children }) {
 export const useCart = () => {
   return useContext(CartContext);
 };
+
+
+export const FormContext = createContext();
+
+export const FormProvider = ({ children }) => {
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    tel: "",
+    cep1: "",
+    endereco: "",
+    numero: "",
+    bairro: "",
+    complemento: "",
+    cidade: "",
+    estado: "",
+    concordo: false,
+  });
+
+  return (
+    <FormContext.Provider value={{ formData, setFormData }}>
+      {children}
+    </FormContext.Provider>
+  );
+};
+
+export const Formulario = () => {
+  return (useContext(FormContext));
+};
+  
