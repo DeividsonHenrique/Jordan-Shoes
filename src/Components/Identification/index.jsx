@@ -8,8 +8,7 @@ import {
   Bloco,
   BtnFinalizar,
   Botao,
-  Valido,
-  Invalido,
+  InputIdent,
   Error,
 } from "../../Pages/Cart/style";
 import { useNavigate } from "react-router-dom";
@@ -32,15 +31,31 @@ function identification() {
 
     // Validação dos campos
 
-    if (formData.nome.length === "") {
-      alert("O campo nome deve ter pelo menos 5 caracteres");
-      return;
-    }
+    // if (formData.nome.length < 5) {
+    //   alert("O campo nome deve ter pelo menos 5 caracteres");
+    //   return;
+    // }
 
     console.log("Dados do formulário: ", formData);
 
     navigate("/payment");
   };
+
+
+  const isValidName = formData.nome.length >= 5;
+  const isValidEmail = formData.email.length >= 5;
+  const isValidTel = formData.tel.length >= 10;
+  const isValidCep = formData.cep1.length >= 8;
+  const isValidEndereco = formData.endereco.length >= 10;
+  const isValidNumero = formData.numero.length >= 2;
+  const isValidBairro = formData.bairro.length >= 5;
+  const isValidCidade = formData.cidade.length >= 5;
+  const isValidEstado = formData.estado.length >= 2;
+  // const isValidConcordo = formData.concordo.length >= 5;
+
+
+  
+
 
   return (
     <>
@@ -52,27 +67,23 @@ function identification() {
         <form className="form_identificacao" onSubmit={handleSubmit}>
           <InputId>
             <label htmlFor="nome">Nome completo*</label>
-            <input type="text" id="nome" className="input" value={formData.nome} onChange={handleInputChange} required  />
-            {formData.nome !== "" && (
-              <Valido></Valido> // Exibe um erro se o campo estiver vazio
-            ) || formData.nome.length < 5 && <Invalido>{`${formData.nome} é obrigatorio`}</Invalido>
-            
-            }
+            <InputIdent type="text" id="nome" value={formData.nome} onChange={handleInputChange} isValid={isValidName} required  />
+            {formData.nome.length === "" || formData.nome.length < 5 && <Error>O campo nome deve ter pelo menos 5 caracteres</Error>}
           
           </InputId>
           <InputId>
             <label htmlFor="email">E-mail*</label>
-            <input type="email" id="email" className="input" value={formData.email} onChange={handleInputChange} required />
-            <Error></Error>
+            <InputIdent type="email" id="email" className="input" value={formData.email} onChange={handleInputChange} isValid={isValidEmail} required />
+            {formData.email.length === "" || formData.email.length < 5 && <Error>O campo email deve ter pelo menos 5 caracteres</Error>}
           </InputId>
           <InputId>
             <label htmlFor="tel">Telefone*</label>
-            <input type="tel" id="tel" className="input" value={formData.tel} onChange={handleInputChange} required />
+            <InputIdent type="tel" id="tel" className="input" value={formData.tel} onChange={handleInputChange} isValid={isValidTel} required />
             <Error></Error>
           </InputId>
           <InputId>
             <label htmlFor="cep1">CEP*</label>
-            <input
+            <InputIdent
               type="text"
               id="cep1"
               className="input"
@@ -80,46 +91,49 @@ function identification() {
               placeholder="99999-999"
               value={formData.cep1}
               onChange={handleInputChange}
+              isValid={isValidCep}
               required
             />
           </InputId>
           <InputId>
             <label htmlFor="endereco">Endereco*</label>
-            <input type="text" id="endereco" className="input" value={formData.endereco} onChange={handleInputChange} required />
+            <InputIdent type="text" id="endereco" className="input" value={formData.endereco} onChange={handleInputChange} isValid={isValidEndereco} required />
           </InputId>
           <InputId>
             <label htmlFor="numero">Número*</label>
-            <input
+            <InputIdent
               type="text"
               id="numero"
               className="input"
               maxLength={10}
               value={formData.numero}
               onChange={handleInputChange}
+              isValid={isValidNumero}
               required
             />
           </InputId>
           <InputId>
             <label htmlFor="bairro">Bairro*</label>
-            <input type="text" id="bairro" className="input" value={formData.bairro} onChange={handleInputChange} required />
+            <InputIdent type="text" id="bairro" className="input" value={formData.bairro} onChange={handleInputChange} isValid={isValidBairro} required />
           </InputId>
           <InputId>
             <label htmlFor="complemento">Complemento</label>
-            <input type="text" id="complemento" className="input" value={formData.complemento} onChange={handleInputChange} />
+            <InputIdent type="text" id="complemento" className="input" value={formData.complemento} onChange={handleInputChange} />
           </InputId>
           <InputId>
             <label htmlFor="cidade">Cidade*</label>
-            <input type="text" id="cidade" className="input" value={formData.cidade} onChange={handleInputChange} required />
+            <InputIdent type="text" id="cidade" className="input" value={formData.cidade} onChange={handleInputChange} isValid={isValidCidade} required />
           </InputId>
           <InputId>
             <label htmlFor="estado">Estado*</label>
-            <input
+            <InputIdent
               type="text"
               id="estado"
               className="input"
               maxLength={2}
               value={formData.estado}
               onChange={handleInputChange}
+              isValid={isValidEstado}
               required
             />
           </InputId>

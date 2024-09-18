@@ -202,7 +202,6 @@ export const Resumo = styled.div`
 export const InputId = styled.div`
   position: relative;
 
-  input,
   select {
     width: 100%;
     height: 50px;
@@ -212,6 +211,38 @@ export const InputId = styled.div`
     padding-left: 20px;
   }
 `;
+
+export const InputIdent = styled.input`
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 20px;
+    padding-left: 20px;
+    border: 2px solid
+    ${props => {
+      if (props.value.length === 0) {
+        return '#ccc'; // Borda preta quando o campo está vazio
+      }
+      return props.isValid ? 'lightgreen' : 'red'; // Verde ou vermelho conforme a validação
+    }};
+  
+
+  &:focus {
+    border-color: 
+      ${props => {
+        if (props.value.length === 0) {
+          return '#ccc'; // Borda preta quando o campo está vazio
+        }
+        return props.isValid ? 'lightgreen' : 'red'; // Verde ou vermelho conforme a validação
+      }};
+  }
+  
+`
+
+export const Error = styled.span`
+  color: red;
+  margin-left: 5px;
+`
 
 export const IdAndPayment = styled.section`
   margin-top: 50px;
@@ -234,18 +265,6 @@ export const IdAndPayment = styled.section`
     appearance: none;
   }
 `;
-
-export const Error = styled.span`
-  color: red;
-  margin-left: 5px;
-`
-
-export const Invalido = styled.span`
-  border-color: red !important;
-`
-export const Valido = styled.span`
-  border-color: green !important;
-`
 
 export const Bloco = styled.div`
   width: 100%;
