@@ -212,37 +212,95 @@ export const InputId = styled.div`
   }
 `;
 
+export const InputCheck = styled.input`
+  margin-right: 5px;
+`;
+
 export const InputIdent = styled.input`
-    width: 100%;
-    height: 50px;
-    border-radius: 50px;
-    font-size: 20px;
-    padding-left: 20px;
-    border: 2px solid
-    ${props => {
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+  font-size: 20px;
+  padding-left: 20px;
+  border: 2px solid
+    ${(props) => {
       if (props.value.length === 0) {
-        return '#ccc'; // Borda preta quando o campo está vazio
+        return "#ccc"; // Borda preta quando o campo está vazio
       }
-      return props.isValid ? 'lightgreen' : 'red'; // Verde ou vermelho conforme a validação
+      return props.isValid ? "lightgreen" : "red"; // Verde ou vermelho conforme a validação
     }};
-  
 
   &:focus {
-    border-color: 
-      ${props => {
-        if (props.value.length === 0) {
-          return '#ccc'; // Borda preta quando o campo está vazio
-        }
-        return props.isValid ? 'lightgreen' : 'red'; // Verde ou vermelho conforme a validação
-      }};
+    border-color: ${(props) => {
+      if (props.value.length === 0) {
+        return "#ccc"; // Borda preta quando o campo está vazio
+      }
+      return props.isValid ? "lightgreen" : "red"; // Verde ou vermelho conforme a validação
+    }};
   }
-  
-`
+`;
+
+export const Mensage = styled.div`
+  position: absolute;
+  color: red;
+  width: 100%;
+  min-height: 100vh;
+  display: ${(props) => (props.show ? "flex" : "none")};
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+
+  span {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: #f4f4f4;
+    width: 300px;
+    height: 150px;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    border-radius: 30px;
+    flex-direction: column;
+    box-shadow: 0 10px 20px #ccc;
+
+    h1 {
+      text-align: center;
+      font-size: 20px;
+      color: darkred;
+      padding: 15px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    input {
+      position: absolute;
+      width: 50%;
+      height: 30px;
+      left: 25%;
+      bottom: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+      font-weight: bold;
+      box-shadow: 0 0 10px #ccc;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+  }
+`;
 
 export const Error = styled.span`
   color: red;
   margin-left: 5px;
-`
+`;
 
 export const IdAndPayment = styled.section`
   margin-top: 50px;
