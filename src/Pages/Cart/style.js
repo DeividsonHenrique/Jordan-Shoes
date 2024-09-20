@@ -212,6 +212,15 @@ export const InputId = styled.div`
   }
 `;
 
+export const InputSelect = styled.select`
+  	width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+    padding-left: 20px;
+`
+
 export const InputCheck = styled.input`
   margin-right: 5px;
 `;
@@ -241,7 +250,7 @@ export const InputIdent = styled.input`
 `;
 
 export const Mensage = styled.div`
-  position: absolute;
+  position: fixed;
   color: red;
   width: 100%;
   min-height: 100vh;
@@ -306,6 +315,7 @@ export const IdAndPayment = styled.section`
   margin-top: 50px;
   padding-inline: 20px;
   width: 100%;
+  min-height: 100vh ;
 
   h2 {
     text-align: center;

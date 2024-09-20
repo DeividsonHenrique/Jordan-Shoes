@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FormContext } from "../../CartContext";
 import Topo from "../../Components/Topo";
 import {
@@ -10,6 +10,7 @@ import {
   Botao,
   InputIdent,
   InputCheck,
+  InputSelect,
   Error,
   Mensage,
 } from "../../Pages/Cart/style";
@@ -21,6 +22,30 @@ function identification() {
   const [showMessage, setShowMessage] = useState(false);
   const { complemento, concordo, ...requiredFields } = formData;
   const [touched, setTouched] = useState({});
+  const [cep, setCep] = useState(''); // Estado para o CEP
+  const [encontrar, setEncontrar] = useState({}); // Estado para armazenar os dados do CEP
+
+  useEffect(() => {
+    const buscarCep = async (cep) => {
+      if (cep.length === 8) { // Verifica se o CEP tem 8 caracteres antes de buscar
+        try {
+          const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+          if (!response.ok) {
+            throw new Error('Erro ao buscar o CEP');
+          }
+          const data = await response.json();
+          setEncontrar(data);
+        } catch (error) {
+          console.error('Erro na requisição:', error);
+        }
+      }
+    };
+
+    if (cep) {
+      buscarCep(cep); // Chama a função apenas se o CEP não estiver vazio
+    }
+  }, [cep]); // O useEffect vai rodar sempre que o 'cep' mudar
+
 
   const handleInputChange = (e) => {
     const { id, value, type, checked } = e.target;
@@ -57,7 +82,7 @@ function identification() {
   const isValidNumero = formData.numero.length >= 2;
   const isValidBairro = formData.bairro.length >= 5;
   const isValidCidade = formData.cidade.length >= 5;
-  const isValidEstado = formData.estado.length >= 2;
+  const isValidEstado = formData.estado.length === "";
 
   const handleBlur = (e) => {
     const { id } = e.target;
@@ -115,9 +140,11 @@ function identification() {
           <InputId>
             <label htmlFor="tel">Telefone*</label>
             <InputIdent
-              type="tel"
+              type="number"
               id="tel"
               className="input"
+              placeholder="99 99999-9999"
+              maxLength={15}
               value={formData.tel}
               onChange={handleInputChange}
               isValid={isValidTel}
@@ -131,13 +158,13 @@ function identification() {
           <InputId>
             <label htmlFor="cep1">CEP*</label>
             <InputIdent
-              type="text"
+              type="number"
               id="cep1"
               className="input"
               maxLength={9}
               placeholder="99999-999"
-              value={formData.cep1}
-              onChange={handleInputChange}
+              value={cep}
+              onChange={(e) => setCep(e.target.value)}
               isValid={isValidCep}
               onBlur={handleBlur}
               required
@@ -146,13 +173,14 @@ function identification() {
               <Error>O campo Cep é obrigatório</Error>
             )}
           </InputId>
+          {encontrar.cep && (
           <InputId>
             <label htmlFor="endereco">Endereco*</label>
             <InputIdent
               type="text"
               id="endereco"
               className="input"
-              value={formData.endereco}
+              value={encontrar.logradouro}
               onChange={handleInputChange}
               isValid={isValidEndereco}
               onBlur={handleBlur}
@@ -162,10 +190,12 @@ function identification() {
               <Error>O campo endereço é obrigatório</Error>
             )}
           </InputId>
+          )}
+          
           <InputId>
             <label htmlFor="numero">Número*</label>
             <InputIdent
-              type="text"
+              type="number"
               id="numero"
               className="input"
               maxLength={10}
@@ -175,17 +205,18 @@ function identification() {
               onBlur={handleBlur}
               required
             />
-            {touched.numero && formData.numero.length == "" && (
+            {touched.numero && formData.numero.length === "" && (
               <Error>O campo numero é obrigatório</Error>
             )}
           </InputId>
+          {encontrar.cep && (
           <InputId>
             <label htmlFor="bairro">Bairro*</label>
             <InputIdent
               type="text"
               id="bairro"
               className="input"
-              value={formData.bairro}
+              value={encontrar.bairro}
               onChange={handleInputChange}
               isValid={isValidBairro}
               onBlur={handleBlur}
@@ -195,6 +226,7 @@ function identification() {
               <Error>O campo bairro é obrigatório</Error>
             )}
           </InputId>
+          )}
           <InputId>
             <label htmlFor="complemento">Complemento</label>
             <InputIdent
@@ -205,13 +237,14 @@ function identification() {
               onChange={handleInputChange}
             />
           </InputId>
+          {encontrar.cep && (
           <InputId>
             <label htmlFor="cidade">Cidade*</label>
             <InputIdent
               type="text"
               id="cidade"
               className="input"
-              value={formData.cidade}
+              value={encontrar.localidade}
               onChange={handleInputChange}
               isValid={isValidCidade}
               onBlur={handleBlur}
@@ -221,23 +254,55 @@ function identification() {
               <Error>O campo Cidade é obrigatório</Error>
             )}
           </InputId>
+          )}
+          {encontrar.cep && (
           <InputId>
             <label htmlFor="estado">Estado*</label>
-            <InputIdent
+            <InputSelect
               type="text"
               id="estado"
               className="input"
               maxLength={2}
-              value={formData.estado}
+              value={encontrar.uf}
               onChange={handleInputChange}
               isValid={isValidEstado}
               onBlur={handleBlur}
               required
-            />
+            >
+              <option value="">Selecione</option>
+              <option value="AC">AC</option>
+              <option value="AL">AL</option>
+              <option value="AP">AP</option>
+              <option value="AM">AM</option>
+              <option value="BA">BA</option>
+              <option value="CE">CE</option>
+              <option value="DF">DF</option>
+              <option value="ES">ES</option>
+              <option value="GO">GO</option>
+              <option value="MA">MA</option>
+              <option value="MT">MT</option>
+              <option value="MS">MS</option>
+              <option value="MG">MG</option>
+              <option value="PA">PA</option>
+              <option value="PB">PB</option>
+              <option value="PR">PR</option>
+              <option value="PE">PE</option>
+              <option value="PI">PI</option>
+              <option value="RJ">RJ</option>
+              <option value="RN">RN</option>
+              <option value="RS">RS</option>
+              <option value="RO">RO</option>
+              <option value="RR">RR</option>
+              <option value="SC">SC</option>
+              <option value="SP">SP</option>
+              <option value="SE">SE</option>
+              <option value="TO">TO</option>
+            </InputSelect>
             {touched.estado && formData.estado.length == "" && (
               <Error>O campo estado é obrigatório</Error>
             )}
           </InputId>
+          )}
           <Bloco>
             <InputCheck
               type="checkbox"
