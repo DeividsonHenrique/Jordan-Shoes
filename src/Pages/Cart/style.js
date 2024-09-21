@@ -254,7 +254,7 @@ export const Mensage = styled.div`
   color: red;
   width: 100%;
   min-height: 100vh;
-  display: ${(props) => (props.show ? "flex" : "none")};
+  display: ${({ show }) => (show ? 'block' : 'none')};
   font-size: 14px;
   justify-content: center;
   align-items: center;
