@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 
 export const Header = styled.header`
   position: fixed;
@@ -36,10 +37,22 @@ export const BtnCarrinho = styled.div`
   display: inline-block;
 `;
 
+export const User = styled(FaUserCircle)`
+  font-size: 28px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    filter: invert(0.5);
+  }
+`;
+
 export const Icone = styled(MdOutlineShoppingCart)`
   font-size: 28px;
   margin-right: 10px;
   cursor: pointer;
+  transition: all 0.3s ease;
 
   &:hover {
     filter: invert(0.5);
@@ -51,7 +64,7 @@ export const Numerositens = styled.span`
   cursor: pointer;
   position: absolute;
   top: -5px;
-  right: -5px;
+  right: 35px;
   width: 18px;
   height: 18px;
   border-radius: 50%;
