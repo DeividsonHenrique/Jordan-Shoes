@@ -4,6 +4,8 @@ import "../../index.css";
 import {
   IdAndPayment,
   InputId,
+  InputPay,
+  InputSelect,
   Bloco,
   BtnFinalizar,
   Botao,
@@ -22,7 +24,7 @@ function Payment() {
         <form className="form_pagamento">
           <InputId>
             <label htmlFor="numero_cartao">Número do cartão*</label>
-            <input
+            <InputPay
               type="text"
               id="numero_cartao"
               className="input"
@@ -32,11 +34,11 @@ function Payment() {
           </InputId>
           <InputId>
             <label htmlFor="nome_impresso">Nome impresso*</label>
-            <input type="text" id="nome_impresso" className="input" required />
+            <InputPay type="text" id="nome_impresso" className="input" required />
           </InputId>
           <InputId>
             <label htmlFor="validade">Validade*</label>
-            <input
+            <InputPay
               type="text"
               id="validade"
               className="input"
@@ -47,7 +49,7 @@ function Payment() {
           </InputId>
           <InputId>
             <label htmlFor="codigo_seguranca">Código de Seguranca*</label>
-            <input
+            <InputPay
               type="text"
               id="codigo_seguranca"
               className="input"
@@ -58,7 +60,7 @@ function Payment() {
           </InputId>
           <InputId>
             <label htmlFor="numero_parcelas">Número de parcelas</label>
-            <select id="numero_parcelas" required>
+            <InputSelect id="numero_parcelas" required>
               <option value="1">À vista</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -67,7 +69,7 @@ function Payment() {
               <option value="6">6</option>
               <option value="7">7</option>
               <option value="8">8</option>
-            </select>
+            </InputSelect>
           </InputId>
           <Bloco>
             <input type="checkbox" id="salvar_cartao" className="checkbox" />

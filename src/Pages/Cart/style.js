@@ -201,25 +201,31 @@ export const Resumo = styled.div`
 
 export const InputId = styled.div`
   position: relative;
-
-  select {
-    width: 100%;
-    height: 50px;
-    border-radius: 50px;
-    border: 1px solid #ccc;
-    font-size: 20px;
-    padding-left: 20px;
-  }
 `;
 
 export const InputSelect = styled.select`
-  	width: 100%;
-    height: 50px;
-    border-radius: 50px;
-    border: 1px solid #ccc;
-    font-size: 20px;
-    padding-left: 20px;
-`
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+  font-size: 20px;
+  padding-left: 20px;
+  border: 2px solid ${(props) => {
+    if (!props.value || props.value.length === 0) {
+      return "#ccc"; // Borda cinza quando o campo está vazio
+    }
+    return props.isValid ? "lightgreen" : "red"; // Verde ou vermelho conforme a validação
+  }};
+
+  &:focus {
+    border-color: ${(props) => {
+      if (!props.value || props.value.length === 0) {
+        return "#ccc"; // Borda cinza quando o campo está vazio
+      }
+      return props.isValid ? "lightgreen" : "red"; // Verde ou vermelho conforme a validação
+    }};
+  }
+`;
+
 
 export const InputCheck = styled.input`
   margin-right: 5px;
@@ -249,12 +255,21 @@ export const InputIdent = styled.input`
   }
 `;
 
+export const InputPay = styled.input`
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+  font-size: 20px;
+  padding-left: 20px;
+  border: 2px solid #ccc;
+`;
+
 export const Mensage = styled.div`
   position: fixed;
   color: red;
   width: 100%;
   min-height: 100vh;
-  display: ${({ show }) => (show ? 'block' : 'none')};
+  display: ${({ show }) => (show ? "block" : "none")};
   font-size: 14px;
   justify-content: center;
   align-items: center;
@@ -315,7 +330,7 @@ export const IdAndPayment = styled.section`
   margin-top: 50px;
   padding-inline: 20px;
   width: 100%;
-  min-height: 100vh ;
+  min-height: 100vh;
 
   h2 {
     text-align: center;

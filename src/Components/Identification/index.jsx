@@ -101,7 +101,7 @@ function identification() {
   const isValidNumero = formData.numero.length >= 1;
   const isValidBairro = formData.bairro.length >= 5;
   const isValidCidade = formData.cidade.length >= 5;
-  const isValidEstado = formData.estado.length >= 2;
+  const isValidEstado = formData.estado.length === 2 && formData.estado.length !== "0";
 
   const handleBlur = (e) => {
     const { id } = e.target;
@@ -280,7 +280,6 @@ function identification() {
           <InputId>
             <label htmlFor="estado">Estado*</label>
             <InputSelect
-              type="text"
               id="estado"
               className="input"
               maxLength={2}
@@ -290,7 +289,7 @@ function identification() {
               onBlur={handleBlur}
               required
             >
-              <option value="">Selecione um estado</option>
+              <option value="0">Selecione um estado</option>
               <option value="AC">Acre</option>
               <option value="AL">Alagoas</option>
               <option value="AP">Amapá</option>
