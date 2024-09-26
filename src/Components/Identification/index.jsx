@@ -46,7 +46,7 @@ function identification() {
             estado: data.uf || "",
           }));
 
-          // Mova o foco para o campo "número" quando os dados do CEP forem carregados
+          // Move o foco para o campo "número" quando os dados do CEP forem carregados
           if (numeroRef.current) {
             numeroRef.current.focus();
           }
