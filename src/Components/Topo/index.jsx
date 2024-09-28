@@ -9,7 +9,8 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../CartContext.jsx";
 
-function Topo() {
+// eslint-disable-next-line react/prop-types
+function Topo( { onLoginClick  } ) {
   const { cartItems } = useCart();
   const navigate = useNavigate();
 
@@ -18,6 +19,10 @@ function Topo() {
       navigate("/cart");
     }
   };
+
+  // const showLogin = () => {
+  //   navigate("/login");
+  // };
 
   return (
     <>
@@ -45,7 +50,8 @@ function Topo() {
               <Numerositens>{cartItems.length}</Numerositens>
             )}
           </abbr>
-          <User />
+          <User onClick={onLoginClick}/>
+          <span></span>
         </BtnCarrinho>
       </Header>
     </>

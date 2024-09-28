@@ -57,4 +57,24 @@ export const FormProvider = ({ children }) => {
 export const Formulario = () => {
   return (useContext(FormContext));
 };
+
+
+export const LoginContext = createContext();
+
+export const LoginProvider = ({ children }) => {
+  const [LoginForm, setLoginForm] = useState({
+    email: "",
+    senha: "",
+  });
+
+  return (
+    <LoginContext.Provider value={{ LoginForm, setLoginForm }}>
+      {children}
+    </LoginContext.Provider>
+  );
+};
+
+export const LoginUser = () => {
+  return (useContext(LoginContext));
+};
   

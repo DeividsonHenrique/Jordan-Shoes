@@ -34,7 +34,12 @@ function Payment() {
           </InputId>
           <InputId>
             <label htmlFor="nome_impresso">Nome impresso*</label>
-            <InputPay type="text" id="nome_impresso" className="input" required />
+            <InputPay
+              type="text"
+              id="nome_impresso"
+              className="input"
+              required
+            />
           </InputId>
           <InputId>
             <label htmlFor="validade">Validade*</label>

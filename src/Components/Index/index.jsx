@@ -15,12 +15,13 @@ import {
 } from "./style";
 
 import Topo from "../Topo";
-
 import DetailProducts from "../../Pages/DetailProducts";
+import Login from "../../Components/Login";
 
 function Index() {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showLogin, setShowLogin] = useState(false);
 
   useEffect(() => {
     const buscarProdutos = async () => {
@@ -47,21 +48,27 @@ function Index() {
   };
 
   const handleCardClick = (product) => {
-    setSelectedProduct(product); // Atualiza o produto selecionado ao clicar no card
+    setSelectedProduct(product);
   };
 
   const handleCloseDetails = () => {
-    setSelectedProduct(null); // Reseta o produto selecionado para voltar à lista de produtos
+    setSelectedProduct(null);
   };
 
   const handleAddToCart = (product) => {
     console.log("Adicionar ao carrinho:", product);
   };
 
+  const handleLoginClick = () => {
+    setShowLogin(!showLogin);
+  }
+
   return (
     <>
+      
       <Body>
-        <Topo />
+        <Topo onLoginClick={handleLoginClick} />
+        {showLogin && <Login onLogin={handleLoginClick} />}
         <Top_Fixed>Frete Gratis para todo Brasil</Top_Fixed>
 
         <Hero>
