@@ -34,7 +34,8 @@ export const TopoMarca = styled.div`
 `;
 export const BtnCarrinho = styled.div`
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 `;
 
 export const User = styled(FaUserCircle)`
@@ -46,6 +47,10 @@ export const User = styled(FaUserCircle)`
   &:hover {
     filter: invert(0.5);
   }
+`;
+
+export const Abreviar = styled.abbr`
+  position: relative;
 `;
 
 export const Icone = styled(MdOutlineShoppingCart)`
@@ -60,11 +65,11 @@ export const Icone = styled(MdOutlineShoppingCart)`
 `;
 
 export const Numerositens = styled.span`
+  position: absolute;
   margin-right: 10px;
   cursor: pointer;
-  position: absolute;
   top: -5px;
-  right: 35px;
+  right: -5px;
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -73,4 +78,28 @@ export const Numerositens = styled.span`
   font-size: 14px;
   text-align: center;
   line-height: 18px;
+`;
+
+export const Usuario = styled.span`
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    filter: invert(0.5);
+  }
+`;
+
+export const LogOut = styled.span`
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    filter: invert(0.5);
+  }
 `;

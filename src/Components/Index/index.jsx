@@ -61,11 +61,10 @@ function Index() {
 
   const handleLoginClick = () => {
     setShowLogin(!showLogin);
-  }
+  };
 
   return (
     <>
-      
       <Body>
         <Topo onLoginClick={handleLoginClick} />
         {showLogin && <Login onLogin={handleLoginClick} />}

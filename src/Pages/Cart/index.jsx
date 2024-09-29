@@ -22,7 +22,7 @@ function Cart() {
     (total, item) => total + item.price * item.quantity,
     0
   );
-  
+
   //console.log("Itens recebidos no carrinho:", cartItems);
 
   const formatCurrency = (number) => {

@@ -47,7 +47,7 @@ function identification() {
           }));
 
           // Move o foco para o campo "número" quando os dados do CEP forem carregados
-          
+
           if (numeroRef.current) {
             numeroRef.current.focus();
           }
@@ -102,7 +102,8 @@ function identification() {
   const isValidNumero = formData.numero.length >= 1;
   const isValidBairro = formData.bairro.length >= 5;
   const isValidCidade = formData.cidade.length >= 5;
-  const isValidEstado = formData.estado.length === 2 && formData.estado.length !== "0";
+  const isValidEstado =
+    formData.estado.length === 2 && formData.estado.length !== "0";
 
   const handleBlur = (e) => {
     const { id } = e.target;

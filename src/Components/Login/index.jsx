@@ -13,7 +13,7 @@ import { LoginContext } from "../../CartContext";
 
 // eslint-disable-next-line react/prop-types
 function Login({ onLogin }) {
-  const { LoginForm, setLoginForm } = useContext(LoginContext);
+  const { LoginForm, setLoginForm, updateEmail } = useContext(LoginContext);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -26,6 +26,11 @@ function Login({ onLogin }) {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     console.log(LoginForm);
+    updateEmail(LoginForm.email);
+    setLoginForm({
+      email: "",
+      senha: "",
+    });
     onLogin();
   };
 
@@ -45,7 +50,7 @@ function Login({ onLogin }) {
 
           <form onSubmit={handleFormSubmit}>
             <InputDiv>
-              <label htmlFor="email_login">E-mail</label>
+              <label htmlFor="email">E-mail</label>
               <Input
                 type="email"
                 value={LoginForm.email}
@@ -56,7 +61,7 @@ function Login({ onLogin }) {
               />
             </InputDiv>
             <InputDiv>
-              <label htmlFor="senha_login">Senha</label>
+              <label htmlFor="senha">Senha</label>
               <Input
                 type="password"
                 value={LoginForm.senha}

@@ -18,7 +18,7 @@ export function CartProvider({ children }) {
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeItemFromCart}}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeItemFromCart }}>
       {children}
     </CartContext.Provider>
   );
@@ -28,7 +28,6 @@ export function CartProvider({ children }) {
 export const useCart = () => {
   return useContext(CartContext);
 };
-
 
 export const FormContext = createContext();
 
@@ -55,9 +54,8 @@ export const FormProvider = ({ children }) => {
 };
 
 export const Formulario = () => {
-  return (useContext(FormContext));
+  return useContext(FormContext);
 };
-
 
 export const LoginContext = createContext();
 
@@ -67,14 +65,31 @@ export const LoginProvider = ({ children }) => {
     senha: "",
   });
 
+  const [confirmedEmail, setConfirmedEmail] = useState("");
+
+  const updateEmail = (email) => {
+    setConfirmedEmail(email);
+  };
+
+  const handleLogout = () => {
+    setConfirmedEmail(null);
+  };
+
   return (
-    <LoginContext.Provider value={{ LoginForm, setLoginForm }}>
+    <LoginContext.Provider
+      value={{
+        LoginForm,
+        setLoginForm,
+        confirmedEmail,
+        updateEmail,
+        handleLogout,
+      }}
+    >
       {children}
     </LoginContext.Provider>
   );
 };
 
 export const LoginUser = () => {
-  return (useContext(LoginContext));
+  return useContext(LoginContext);
 };
-  
