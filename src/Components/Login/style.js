@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 export const Input = styled.input`
   width: 100%;
@@ -40,6 +41,26 @@ export const InputDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  label {
+    display: block;
+    font-size: 16px;
+    margin-block: 10px;
+    text-align: start;
+    width: 100%;
+  }
+
+  span{
+    font-size: 18px;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover{
+      color: var(--brand_color);
+      border-bottom: 1px solid var(--brand_color);
+    }
+  }
 `;
 
 export const BtnEntrar = styled(Link)`
@@ -82,4 +103,31 @@ export const BtnFechar = styled.span`
     color: #fff;
     background-color: #222;
   }
+`;
+
+
+export const BtnVoltar = styled(FaArrowAltCircleLeft)`
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    text-align: center;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+    color: #fff;
+    background-color: #222;
+
+    &:hover {
+      font-weight: bold;
+      color: black;
+      background-color: #fff;
+    }
+`
+
+export const Error = styled.span`
+  color: red;
+  margin-left: 5px;
 `;

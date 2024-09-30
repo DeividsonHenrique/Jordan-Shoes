@@ -65,6 +65,12 @@ export const LoginProvider = ({ children }) => {
     senha: "",
   });
 
+  const [RegisterForm, setRegisterForm] = useState({
+    emailRegister: "",
+    senhaRegister: "",
+    confirmeSenha: "",
+  });
+
   const [confirmedEmail, setConfirmedEmail] = useState("");
 
   const updateEmail = (email) => {
@@ -83,6 +89,7 @@ export const LoginProvider = ({ children }) => {
         confirmedEmail,
         updateEmail,
         handleLogout,
+        RegisterForm, setRegisterForm
       }}
     >
       {children}
