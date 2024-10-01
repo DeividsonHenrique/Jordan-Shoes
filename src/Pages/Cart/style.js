@@ -209,23 +209,23 @@ export const InputSelect = styled.select`
   border-radius: 50px;
   font-size: 20px;
   padding-left: 20px;
-  border: 2px solid ${(props) => {
-    if (!props.value || props.value.length === 0) {
-      return "#ccc"; // Borda cinza quando o campo está vazio
-    }
-    return props.isValid ? "lightgreen" : "red"; // Verde ou vermelho conforme a validação
-  }};
+  border: 2px solid
+    ${(props) => {
+      if (!props.value || props.value.length === 0) {
+        return "#ccc";
+      }
+      return props.isValid ? "lightgreen" : "red";
+    }};
 
   &:focus {
     border-color: ${(props) => {
       if (!props.value || props.value.length === 0) {
-        return "#ccc"; // Borda cinza quando o campo está vazio
+        return "#ccc";
       }
-      return props.isValid ? "lightgreen" : "red"; // Verde ou vermelho conforme a validação
+      return props.isValid ? "lightgreen" : "red";
     }};
   }
 `;
-
 
 export const InputCheck = styled.input`
   margin-right: 5px;
@@ -240,17 +240,17 @@ export const InputIdent = styled.input`
   border: 2px solid
     ${(props) => {
       if (props.value.length === 0) {
-        return "#ccc"; // Borda preta quando o campo está vazio
+        return "#ccc";
       }
-      return props.isValid ? "lightgreen" : "red"; // Verde ou vermelho conforme a validação
+      return props.isValid ? "lightgreen" : "red";
     }};
 
   &:focus {
     border-color: ${(props) => {
       if (props.value.length === 0) {
-        return "#ccc"; // Borda preta quando o campo está vazio
+        return "#ccc";
       }
-      return props.isValid ? "lightgreen" : "red"; // Verde ou vermelho conforme a validação
+      return props.isValid ? "lightgreen" : "red";
     }};
   }
 `;

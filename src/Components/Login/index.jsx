@@ -9,7 +9,7 @@ import {
   BtnEntrar,
   BtnFechar,
   BtnVoltar,
-  // Error,
+  Error,
 } from "./style";
 import { LoginContext } from "../../CartContext";
 
@@ -24,6 +24,7 @@ function Login({ onLogin }) {
   } = useContext(LoginContext);
   const [showLoginModal, setShowLoginModal] = useState(true);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -55,7 +56,23 @@ function Login({ onLogin }) {
   const handleFormRegisterSubmit = (event) => {
     event.preventDefault();
 
+    const { senhaRegister, confirmeSenha } = RegisterForm;
+
+    if (senhaRegister !== confirmeSenha) {
+      setErrorMessage("As senhas não coincidem.");
+      return;
+    }
+    if (senhaRegister.length < 5 || confirmeSenha.length < 5) {
+      setErrorMessage("A senha deve ter pelo menos 5 caracteres.");
+      return;
+    }
+
+    console.log("Formulário de cadastro enviado com sucesso!");
+    setErrorMessage("");
+
     console.log(RegisterForm);
+
+    updateEmail(RegisterForm.emailRegister);
     setRegisterForm({
       emailRegister: "",
       senhaRegister: "",
@@ -128,7 +145,7 @@ function Login({ onLogin }) {
       )}
       <div className="modal_overlay hidden"></div>
 
-      {/* modal cadstrar */}
+      {/* modal cadastrar */}
       {showRegisterModal && (
         <LoginContainer>
           <LoginPanel>
@@ -177,6 +194,7 @@ function Login({ onLogin }) {
               <div>
                 <span className="form_aviso"></span>
               </div>
+              {errorMessage && <Error>{errorMessage}</Error>}
             </form>
           </LoginPanel>
         </LoginContainer>

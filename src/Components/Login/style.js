@@ -50,13 +50,13 @@ export const InputDiv = styled.div`
     width: 100%;
   }
 
-  span{
+  span {
     font-size: 18px;
     border-bottom: 1px solid transparent;
     cursor: pointer;
     transition: all 0.3s ease;
 
-    &:hover{
+    &:hover {
       color: var(--brand_color);
       border-bottom: 1px solid var(--brand_color);
     }
@@ -105,27 +105,26 @@ export const BtnFechar = styled.span`
   }
 `;
 
-
 export const BtnVoltar = styled(FaArrowAltCircleLeft)`
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    text-align: center;
-    cursor: pointer;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    transition: all 0.3s ease;
-    color: #fff;
-    background-color: #222;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  text-align: center;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+  color: #fff;
+  background-color: #222;
 
-    &:hover {
-      font-weight: bold;
-      color: black;
-      background-color: #fff;
-    }
-`
+  &:hover {
+    font-weight: bold;
+    color: black;
+    background-color: #fff;
+  }
+`;
 
 export const Error = styled.span`
   color: red;

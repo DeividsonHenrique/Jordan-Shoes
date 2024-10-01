@@ -73,8 +73,12 @@ export const LoginProvider = ({ children }) => {
 
   const [confirmedEmail, setConfirmedEmail] = useState("");
 
-  const updateEmail = (email) => {
-    setConfirmedEmail(email);
+  const updateEmail = (email, emailRegister) => {
+    if (email) {
+      setConfirmedEmail(email);
+    } else if (emailRegister) {
+      setConfirmedEmail(emailRegister);
+    }
   };
 
   const handleLogout = () => {
@@ -89,7 +93,8 @@ export const LoginProvider = ({ children }) => {
         confirmedEmail,
         updateEmail,
         handleLogout,
-        RegisterForm, setRegisterForm
+        RegisterForm,
+        setRegisterForm,
       }}
     >
       {children}

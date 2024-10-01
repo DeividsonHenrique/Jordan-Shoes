@@ -18,12 +18,12 @@ import { useNavigate } from "react-router-dom";
 
 function identification() {
   const { formData, setFormData } = useContext(FormContext);
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
   const [showMessage, setShowMessage] = useState(false);
   const { complemento, concordo, ...requiredFields } = formData;
   const [touched, setTouched] = useState({});
-  const [cep, setCep] = useState(""); // Estado para o CEP
-  const [, setEncontrar] = useState({}); // Estado para armazenar os dados do CEP
+  const [cep, setCep] = useState("");
+  const [, setEncontrar] = useState({}); //para armazenar os dados do CEP
   const numeroRef = useRef(null);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ function identification() {
             estado: data.uf || "",
           }));
 
-          // Move o foco para o campo "número" quando os dados do CEP forem carregados
+          // Move o foco para o campo número quando os dados do CEP forem carregados
 
           if (numeroRef.current) {
             numeroRef.current.focus();
