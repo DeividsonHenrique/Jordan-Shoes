@@ -1,6 +1,5 @@
+import Topo from "../../Components/Topo";
 import { useContext, useState } from "react";
-import "../../index.css";
-import Topo from "../Topo";
 import {
   Input,
   LoginContainer,
@@ -8,13 +7,15 @@ import {
   InputDiv,
   BtnEntrar,
   BtnFechar,
-  BtnVoltar,
   Error,
-} from "./style";
+  Identifiquese,
+  CriarEntrar,
+  BtnFazerLogin,
+  BtnCriarConta,
+} from "../../Components/Login/style";
 import { LoginContext } from "../../CartContext";
 
-// eslint-disable-next-line react/prop-types
-function Login({ onLogin }) {
+function Identifique() {
   const {
     LoginForm,
     setLoginForm,
@@ -22,9 +23,26 @@ function Login({ onLogin }) {
     RegisterForm,
     setRegisterForm,
   } = useContext(LoginContext);
-  const [showLoginModal, setShowLoginModal] = useState(true);
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Funções para abrir e fechar os modais
+  const handleOpenLoginModal = () => {
+    setShowLoginModal(true);
+    setShowRegisterModal(false);
+  };
+
+  const handleOpenRegisterModal = () => {
+    setShowRegisterModal(true);
+    setShowLoginModal(false);
+  };
+
+  const handleCloseModal = () => {
+    setShowLoginModal(false);
+    setShowRegisterModal(false);
+  };
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -42,7 +60,7 @@ function Login({ onLogin }) {
       email: "",
       senha: "",
     });
-    onLogin();
+    handleCloseModal(); // Fecha o modal após o login
   };
 
   const handleInputChangeRegister = (e) => {
@@ -78,36 +96,39 @@ function Login({ onLogin }) {
       senhaRegister: "",
       confirmeSenha: "",
     });
-    onLogin();
+    handleCloseModal(); // Fecha o modal após o cadastro
   };
 
   const handleContainerClick = (event) => {
     if (event.target === event.currentTarget) {
-      onLogin();
+      handleCloseModal();
     }
   };
-
-  const handleOpenRegisterModal = () => {
-    setShowLoginModal(false);
-    setShowRegisterModal(true);
-  };
-
-  const handleCloseRegisterModal = () => {
-    setShowRegisterModal(false);
-    setShowLoginModal(true);
-  };
-
 
   return (
     <>
       <Topo />
-      {/* modal login */}
+      <Identifiquese>
+        <h2>Identifique-se</h2>
+        <CriarEntrar>
+          <BtnCriarConta onClick={handleOpenRegisterModal}>
+            Criar conta
+          </BtnCriarConta>
+        </CriarEntrar>
+        ou
+        <CriarEntrar>
+          <BtnFazerLogin onClick={handleOpenLoginModal}>
+            Fazer login
+          </BtnFazerLogin>
+        </CriarEntrar>
+      </Identifiquese>
 
+      {/* Modal de Login */}
       {showLoginModal && (
         <LoginContainer onClick={handleContainerClick}>
           <LoginPanel>
             <h2>Entrar</h2>
-            <BtnFechar onClick={onLogin}>X</BtnFechar>
+            <BtnFechar onClick={handleCloseModal}>X</BtnFechar>
 
             <form onSubmit={handleFormSubmit}>
               <InputDiv>
@@ -132,27 +153,26 @@ function Login({ onLogin }) {
                 />
               </InputDiv>
               <InputDiv>
-                <BtnEntrar onClick={handleFormSubmit} type="submit">
+                <BtnEntrar type="submit" onClick={handleFormSubmit}>
                   Entrar
                 </BtnEntrar>
               </InputDiv>
               <InputDiv>
-                <span onClick={handleOpenRegisterModal}>Cadastrar Usuário</span>
+                {/* <span onClick={handleOpenRegisterModal}>
+                  Cadastrar Usuário
+                </span> */}
               </InputDiv>
             </form>
           </LoginPanel>
         </LoginContainer>
       )}
-      <div className="modal_overlay hidden"></div>
 
-      {/* modal cadastrar */}
+      {/* Modal de Registro */}
       {showRegisterModal && (
-        <LoginContainer>
+        <LoginContainer onClick={handleContainerClick}>
           <LoginPanel>
             <h2>Cadastrar</h2>
-            <BtnFechar onClick={onLogin}>X</BtnFechar>
-            <BtnVoltar onClick={handleCloseRegisterModal}></BtnVoltar>
-
+            <BtnFechar onClick={handleCloseModal}>X</BtnFechar>
             <form onSubmit={handleFormRegisterSubmit}>
               <InputDiv>
                 <label htmlFor="emailRegister">E-mail</label>
@@ -187,7 +207,7 @@ function Login({ onLogin }) {
                 />
               </InputDiv>
               <InputDiv>
-                <BtnEntrar onClick={handleFormRegisterSubmit} type="submit">
+                <BtnEntrar type="submit" onClick={handleFormRegisterSubmit}>
                   Cadastrar
                 </BtnEntrar>
               </InputDiv>
@@ -199,9 +219,8 @@ function Login({ onLogin }) {
           </LoginPanel>
         </LoginContainer>
       )}
-      <div className="modal_overlay_cadastrar hidden"></div>
     </>
   );
 }
 
-export default Login;
+export default Identifique;

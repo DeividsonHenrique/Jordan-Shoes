@@ -4,6 +4,7 @@ import Cart from "./Pages/Cart";
 import Identification from "./Components/Identification/index.jsx";
 import Payment from "./Components/Payment/index.jsx";
 import Login from "./Components/Login/index.jsx";
+import Identifique from "./Pages/Identifique/index.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider, FormProvider, LoginProvider } from "./CartContext.jsx";
 
@@ -21,6 +22,7 @@ function AppRoutes() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/identification" element={<Identification />} />
                 <Route path="/payment" element={<Payment />} />
+                <Route path="/identifique" element={<Identifique />} />
               </Routes>
             </BrowserRouter>
           </LoginProvider>

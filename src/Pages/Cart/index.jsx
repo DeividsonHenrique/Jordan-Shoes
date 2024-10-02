@@ -131,7 +131,7 @@ function Cart() {
                 </span>
               </li>
             </ul>
-            <BtnContinuar to="/identification">Continuar</BtnContinuar>
+            <BtnContinuar to="/identifique">Continuar</BtnContinuar>
           </Resumo>
         </CarrinhoDetalhes>
       </Carrinho>

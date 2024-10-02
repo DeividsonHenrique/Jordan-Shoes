@@ -130,3 +130,53 @@ export const Error = styled.span`
   color: red;
   margin-left: 5px;
 `;
+
+export const Identifiquese = styled.section`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 70px;
+  gap: 20px;
+
+  span {
+    text-align: center;
+  }
+
+  h2,
+  h3 {
+    margin-bottom: 20px;
+  }
+`;
+
+export const CriarEntrar = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const BtnFazerLogin = styled.button`
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+  background-color: var(--dark);
+  color: var(--white);
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+`;
+export const BtnCriarConta = styled.span`
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #ccc;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+`;
