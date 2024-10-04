@@ -12,11 +12,10 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useCart, LoginUser } from "../../CartContext.jsx";
 
-
 // eslint-disable-next-line react/prop-types
 function Topo({ onLoginClick }) {
   const { cartItems } = useCart();
-  const { confirmedEmail, handleLogout } = LoginUser();
+  const { confirmedEmail, handleLogOutAndRedirect } = LoginUser();
   const navigate = useNavigate();
 
   const handleGoToCart = () => {
@@ -25,15 +24,8 @@ function Topo({ onLoginClick }) {
     }
   };
 
-  // const showLogin = () => {
-  //   navigate("/login");
-  // };
-
-  
-
   return (
-    <>  
-    
+    <>
       <Header>
         <TopoMarca>
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -62,7 +54,7 @@ function Topo({ onLoginClick }) {
           {confirmedEmail && (
             <>
               <Usuario>{confirmedEmail}</Usuario>
-              <LogOut onClick={handleLogout}>Sair</LogOut>
+              <LogOut onClick={handleLogOutAndRedirect}>Sair</LogOut>
             </>
           )}
         </BtnCarrinho>

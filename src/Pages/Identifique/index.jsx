@@ -1,5 +1,4 @@
-import Topo from "../../Components/Topo";
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import {
   Input,
   LoginContainer,
@@ -14,130 +13,66 @@ import {
   BtnCriarConta,
 } from "../../Components/Login/style";
 import { LoginContext } from "../../CartContext";
+import { useNavigate } from "react-router-dom";
 
 function Identifique() {
   const {
     LoginForm,
-    setLoginForm,
-    updateEmail,
-    RegisterForm,
-    setRegisterForm,
+    confirmedEmail,
+    showLoginModalIdnt,
+    showRegisterModalIdent,
+    errorMessageIdent,
+    handleOpenLoginModalIdent,
+    handleOpenRegisterModalIdent,
+    handleCloseModalIdent,
+    handleInputChangeIdent,
+    handleFormSubmitIdent,
+    handleInputChangeRegisterIdent,
+    handleFormRegisterSubmitIdent,
+    handleContainerClickIdent,
   } = useContext(LoginContext);
+  const navigate = useNavigate();
 
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  // verifica e o usuario esta logado e pula para /payment
 
-  // Funções para abrir e fechar os modais
-  const handleOpenLoginModal = () => {
-    setShowLoginModal(true);
-    setShowRegisterModal(false);
-  };
-
-  const handleOpenRegisterModal = () => {
-    setShowRegisterModal(true);
-    setShowLoginModal(false);
-  };
-
-  const handleCloseModal = () => {
-    setShowLoginModal(false);
-    setShowRegisterModal(false);
-  };
-
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setLoginForm((prevForm) => ({
-      ...prevForm,
-      [id]: value,
-    }));
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    console.log(LoginForm);
-    updateEmail(LoginForm.email);
-    setLoginForm({
-      email: "",
-      senha: "",
-    });
-    handleCloseModal(); // Fecha o modal após o login
-  };
-
-  const handleInputChangeRegister = (e) => {
-    const { id, value } = e.target;
-    setRegisterForm((prevForm) => ({
-      ...prevForm,
-      [id]: value,
-    }));
-  };
-
-  const handleFormRegisterSubmit = (event) => {
-    event.preventDefault();
-
-    const { senhaRegister, confirmeSenha } = RegisterForm;
-
-    if (senhaRegister !== confirmeSenha) {
-      setErrorMessage("As senhas não coincidem.");
-      return;
+  useEffect(() => {
+    if (confirmedEmail) {
+      navigate("/payment");
     }
-    if (senhaRegister.length < 5 || confirmeSenha.length < 5) {
-      setErrorMessage("A senha deve ter pelo menos 5 caracteres.");
-      return;
-    }
-
-    console.log("Formulário de cadastro enviado com sucesso!");
-    setErrorMessage("");
-
-    console.log(RegisterForm);
-
-    updateEmail(RegisterForm.emailRegister);
-    setRegisterForm({
-      emailRegister: "",
-      senhaRegister: "",
-      confirmeSenha: "",
-    });
-    handleCloseModal(); // Fecha o modal após o cadastro
-  };
-
-  const handleContainerClick = (event) => {
-    if (event.target === event.currentTarget) {
-      handleCloseModal();
-    }
-  };
+  }, [navigate, confirmedEmail]);
 
   return (
     <>
-      <Topo />
       <Identifiquese>
         <h2>Identifique-se</h2>
         <CriarEntrar>
-          <BtnCriarConta onClick={handleOpenRegisterModal}>
+          <BtnCriarConta onClick={handleOpenRegisterModalIdent}>
             Criar conta
           </BtnCriarConta>
         </CriarEntrar>
         ou
         <CriarEntrar>
-          <BtnFazerLogin onClick={handleOpenLoginModal}>
+          <BtnFazerLogin onClick={handleOpenLoginModalIdent}>
             Fazer login
           </BtnFazerLogin>
         </CriarEntrar>
       </Identifiquese>
 
       {/* Modal de Login */}
-      {showLoginModal && (
-        <LoginContainer onClick={handleContainerClick}>
+      {showLoginModalIdnt && (
+        <LoginContainer onClick={handleContainerClickIdent}>
           <LoginPanel>
             <h2>Entrar</h2>
-            <BtnFechar onClick={handleCloseModal}>X</BtnFechar>
+            <BtnFechar onClick={handleCloseModalIdent}>X</BtnFechar>
 
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleFormSubmitIdent}>
               <InputDiv>
                 <label htmlFor="email">E-mail</label>
                 <Input
                   type="email"
                   value={LoginForm.email}
                   id="email"
-                  onChange={handleInputChange}
+                  onChange={handleInputChangeIdent}
                   autoFocus
                   required
                 />
@@ -148,12 +83,12 @@ function Identifique() {
                   type="password"
                   value={LoginForm.senha}
                   id="senha"
-                  onChange={handleInputChange}
+                  onChange={handleInputChangeIdent}
                   required
                 />
               </InputDiv>
               <InputDiv>
-                <BtnEntrar type="submit" onClick={handleFormSubmit}>
+                <BtnEntrar type="submit" onClick={handleFormSubmitIdent}>
                   Entrar
                 </BtnEntrar>
               </InputDiv>
@@ -168,19 +103,19 @@ function Identifique() {
       )}
 
       {/* Modal de Registro */}
-      {showRegisterModal && (
-        <LoginContainer onClick={handleContainerClick}>
+      {showRegisterModalIdent && (
+        <LoginContainer onClick={handleContainerClickIdent}>
           <LoginPanel>
             <h2>Cadastrar</h2>
-            <BtnFechar onClick={handleCloseModal}>X</BtnFechar>
-            <form onSubmit={handleFormRegisterSubmit}>
+            <BtnFechar onClick={handleCloseModalIdent}>X</BtnFechar>
+            <form onSubmit={handleFormRegisterSubmitIdent}>
               <InputDiv>
                 <label htmlFor="emailRegister">E-mail</label>
                 <Input
                   type="email"
                   placeholder="user@mail.com"
                   id="emailRegister"
-                  onChange={handleInputChangeRegister}
+                  onChange={handleInputChangeRegisterIdent}
                   autoFocus
                   required
                 />
@@ -192,7 +127,7 @@ function Identifique() {
                   type="password"
                   placeholder="mínimo 5 caracteres"
                   id="senhaRegister"
-                  onChange={handleInputChangeRegister}
+                  onChange={handleInputChangeRegisterIdent}
                   required
                 />
               </InputDiv>
@@ -202,19 +137,22 @@ function Identifique() {
                 <Input
                   type="password"
                   id="confirmeSenha"
-                  onChange={handleInputChangeRegister}
+                  onChange={handleInputChangeRegisterIdent}
                   required
                 />
               </InputDiv>
               <InputDiv>
-                <BtnEntrar type="submit" onClick={handleFormRegisterSubmit}>
+                <BtnEntrar
+                  type="submit"
+                  onClick={handleFormRegisterSubmitIdent}
+                >
                   Cadastrar
                 </BtnEntrar>
               </InputDiv>
               <div>
                 <span className="form_aviso"></span>
               </div>
-              {errorMessage && <Error>{errorMessage}</Error>}
+              {errorMessageIdent && <Error>{errorMessageIdent}</Error>}
             </form>
           </LoginPanel>
         </LoginContainer>

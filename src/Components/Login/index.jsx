@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import "../../index.css";
-import Topo from "../Topo";
+
 import {
   Input,
   LoginContainer,
@@ -17,90 +17,20 @@ import { LoginContext } from "../../CartContext";
 function Login({ onLogin }) {
   const {
     LoginForm,
-    setLoginForm,
-    updateEmail,
-    RegisterForm,
-    setRegisterForm,
+    showLoginModal,
+    showRegisterModal,
+    handleOpenRegisterModal,
+    handleCloseRegisterModal,
+    handleInputChange,
+    handleInputChangeRegister,
+    handleFormSubmit,
+    handleFormRegisterSubmit,
+    errorMessage,
+    handleContainerClick,
   } = useContext(LoginContext);
-  const [showLoginModal, setShowLoginModal] = useState(true);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setLoginForm((prevForm) => ({
-      ...prevForm,
-      [id]: value,
-    }));
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    console.log(LoginForm);
-    updateEmail(LoginForm.email);
-    setLoginForm({
-      email: "",
-      senha: "",
-    });
-    onLogin();
-  };
-
-  const handleInputChangeRegister = (e) => {
-    const { id, value } = e.target;
-    setRegisterForm((prevForm) => ({
-      ...prevForm,
-      [id]: value,
-    }));
-  };
-
-  const handleFormRegisterSubmit = (event) => {
-    event.preventDefault();
-
-    const { senhaRegister, confirmeSenha } = RegisterForm;
-
-    if (senhaRegister !== confirmeSenha) {
-      setErrorMessage("As senhas não coincidem.");
-      return;
-    }
-    if (senhaRegister.length < 5 || confirmeSenha.length < 5) {
-      setErrorMessage("A senha deve ter pelo menos 5 caracteres.");
-      return;
-    }
-
-    console.log("Formulário de cadastro enviado com sucesso!");
-    setErrorMessage("");
-
-    console.log(RegisterForm);
-
-    updateEmail(RegisterForm.emailRegister);
-    setRegisterForm({
-      emailRegister: "",
-      senhaRegister: "",
-      confirmeSenha: "",
-    });
-    onLogin();
-  };
-
-  const handleContainerClick = (event) => {
-    if (event.target === event.currentTarget) {
-      onLogin();
-    }
-  };
-
-  const handleOpenRegisterModal = () => {
-    setShowLoginModal(false);
-    setShowRegisterModal(true);
-  };
-
-  const handleCloseRegisterModal = () => {
-    setShowRegisterModal(false);
-    setShowLoginModal(true);
-  };
-
 
   return (
     <>
-      <Topo />
       {/* modal login */}
 
       {showLoginModal && (

@@ -14,14 +14,11 @@ import {
   CardDetalhes,
 } from "./style";
 
-import Topo from "../Topo";
 import DetailProducts from "../../Pages/DetailProducts";
-import Login from "../../Components/Login";
 
 function Index() {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [showLogin, setShowLogin] = useState(false);
 
   useEffect(() => {
     const buscarProdutos = async () => {
@@ -59,15 +56,9 @@ function Index() {
     console.log("Adicionar ao carrinho:", product);
   };
 
-  const handleLoginClick = () => {
-    setShowLogin(!showLogin);
-  };
-
   return (
     <>
       <Body>
-        <Topo onLoginClick={handleLoginClick} />
-        {showLogin && <Login onLogin={handleLoginClick} />}
         <Top_Fixed>Frete Gratis para todo Brasil</Top_Fixed>
 
         <Hero>

@@ -1,4 +1,3 @@
-import Topo from "../../Components/Topo";
 import "../../index.css";
 import {
   Carrinho,
@@ -23,8 +22,6 @@ function Cart() {
     0
   );
 
-  //console.log("Itens recebidos no carrinho:", cartItems);
-
   const formatCurrency = (number) => {
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
@@ -40,7 +37,6 @@ function Cart() {
 
   return (
     <>
-      <Topo />
       <Carrinho>
         <h2>Carrinho</h2>
         <Table>
