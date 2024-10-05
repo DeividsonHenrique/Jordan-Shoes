@@ -10,6 +10,42 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
+  const dataAtual = new Date().toLocaleString()
+
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      navigate("/");
+    }
+  }, [cartItems, navigate]);
+
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  const formatCurrency = (number) => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(number);
+  };
+
+  const valorFrete = 10;
+
+  const valorDesconto = 10;
+
+  const totalDaCompra = totalPrice + valorFrete - valorDesconto;
+
+  const criarCompra = () => {
+   const Compra = {
+      data: dataAtual,
+      itens: cartItems,
+      total: formatCurrency(totalDaCompra),
+    };
+    localStorage.setItem("compra", JSON.stringify(Compra));
+    console.log(JSON.parse(localStorage.getItem("compra")));
+  }
+  
 
   const addToCart = (product) => {
     setCartItems((prevItems) => [...prevItems, product]);
@@ -19,14 +55,10 @@ export function CartProvider({ children }) {
     setCartItems((prevItems) => prevItems.filter((item) => item.size !== size));
   };
 
-  useEffect(() => {
-    if (cartItems.length === 0) {
-      navigate("/");
-    }
-  }, [cartItems, navigate]);
+  
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeItemFromCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeItemFromCart, formatCurrency, totalDaCompra, totalPrice, valorFrete, valorDesconto, criarCompra }}>
       {children}
     </CartContext.Provider>
   );
@@ -35,6 +67,8 @@ export function CartProvider({ children }) {
 export const useCart = () => {
   return useContext(CartContext);
 };
+
+// ------------- parte geral especial para Formulario -------------------------------------
 
 export const FormContext = createContext();
 
@@ -52,6 +86,7 @@ export const FormProvider = ({ children }) => {
     estado: "",
     concordo: false,
   });
+  
 
   return (
     <FormContext.Provider value={{ formData, setFormData }}>
@@ -64,7 +99,10 @@ export const Formulario = () => {
   return useContext(FormContext);
 };
 
-// parte geral especial para login e cadastro
+
+
+
+// ------------- parte geral especial para login e cadastro-------------------------------------
 
 export const LoginContext = createContext();
 
@@ -102,6 +140,8 @@ export const LoginProvider = ({ children, openAll }) => {
     openAll();
     const usuarioLogado = true;
     console.log("usuario logado", usuarioLogado);
+    localStorage.setItem("Nome do Usuario", LoginForm.email);
+    console.log(JSON.parse(localStorage.getItem("Nome do Usuario")));
   };
 
   const handleInputChange = (e) => {
@@ -111,6 +151,7 @@ export const LoginProvider = ({ children, openAll }) => {
       [id]: value,
     }));
   };
+
 
   // Parte geral especial para o cadastro
 
@@ -158,6 +199,8 @@ export const LoginProvider = ({ children, openAll }) => {
     openAll();
     const usuarioLogado = true;
     console.log("usuario logado", usuarioLogado);
+    localStorage.setItem("Nome do Usuario", RegisterForm.emailRegister);
+    console.log(JSON.parse(localStorage.getItem("Nome do Usuario")));
   };
 
   // Funções para abrir e fechar os modais e atualizar o email
@@ -179,6 +222,8 @@ export const LoginProvider = ({ children, openAll }) => {
   const handleLogOutAndRedirect = () => {
     handleLogout();
     navigate("/");
+    localStorage.removeItem("Nome do Usuario");
+    localStorage.removeItem("compra");
   };
 
   const handleOpenRegisterModal = () => {

@@ -41,6 +41,7 @@ function DetailProducts({ product, onClose }) {
         quantity: 1,
       });
       navigate("/cart");
+      
     } else {
       alert("Selecione um tamanho.");
     }
@@ -57,7 +58,7 @@ function DetailProducts({ product, onClose }) {
     }).format(number);
   };
 
-  console.log(handleAddToCart);
+  // console.log(handleAddToCart);
 
   return (
     <>

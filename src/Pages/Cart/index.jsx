@@ -14,31 +14,31 @@ import {
   Resumo,
 } from "./style";
 import { useCart } from "../../CartContext.jsx";
+import { useEffect, useState } from "react";
 function Cart() {
-  const { cartItems, removeItemFromCart } = useCart();
+  const {
+    cartItems,
+    removeItemFromCart,
+    formatCurrency,
+    totalDaCompra,
+    totalPrice,
+    valorFrete,
+    valorDesconto,
+    criarCompra,
+  } = useCart();
+  const [, setCompra] = useState(null); // Estado para armazenar a compra
 
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-
-  const formatCurrency = (number) => {
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(number);
-  };
-
-  const valorFrete = 0;
-
-  const valorDesconto = 0;
-
-  const totalDaCompra = totalPrice + valorFrete - valorDesconto;
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      setCompra(criarCompra()); // Atualiza o estado local
+    }
+  }, [cartItems, criarCompra]); // Executa quando cartItems mudar
 
   return (
     <>
       <Carrinho>
         <h2>Carrinho</h2>
+        {/* {compra ? () : (<p>carrinho vazio</p>)} */}
         <Table>
           <thead>
             <tr>
@@ -50,6 +50,7 @@ function Cart() {
               <ColunaApagarTh>Apagar</ColunaApagarTh>
             </tr>
           </thead>
+
           <tbody>
             {cartItems.map((item, index) => (
               <tr key={index}>
