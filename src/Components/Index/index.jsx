@@ -15,6 +15,7 @@ import {
 } from "./style";
 
 import DetailProducts from "../../Pages/DetailProducts";
+import { Fade } from "react-awesome-reveal";
 
 function Index() {
   const [products, setProducts] = useState([]);
@@ -58,61 +59,62 @@ function Index() {
 
   return (
     <>
-      <Body>
-        <Top_Fixed>Frete Gratis para todo Brasil</Top_Fixed>
+      <Fade triggerOnce>
+        <Body>
+          <Top_Fixed>Frete Gratis para todo Brasil</Top_Fixed>
 
-        <Hero>
-          <Hero_Content>
-            <h1>
-              <img src="/images/logo-jordan.svg" alt="" />
-              Jordan Shoes
-            </h1>
+          <Hero>
+            <Hero_Content>
+              <h1>
+                <img src="/images/logo-jordan.svg" alt="" />
+                Jordan Shoes
+              </h1>
 
-            <h2>A melhor loja de Jordan</h2>
-            <p>
-              O tênis Jordan é fruto de uma velha e forte <br /> parceria entre
-              a nike e o jogador Michael Jordan.
-            </p>
-          </Hero_Content>
-        </Hero>
-
-        <Main>
-          <Produtos>
-            <Heading>
-              <h3>Os melhores em só lugar</h3>
+              <h2>A melhor loja de Jordan</h2>
               <p>
-                A marca Jordan na JordanShoes é a escolha certa para os amanetes
-                sneakers que buscam estilo e conforto.
+                O tênis Jordan é fruto de uma velha e forte <br /> parceria
+                entre a nike e o jogador Michael Jordan.
               </p>
-            </Heading>
+            </Hero_Content>
+          </Hero>
+          <Fade triggerOnce delay={200} duration={500} direction="up">
+            <Main>
+              <Produtos>
+                <Heading>
+                  <h3>Os melhores em só lugar</h3>
+                  <p>
+                    A marca Jordan na JordanShoes é a escolha certa para os
+                    amanetes sneakers que buscam estilo e conforto.
+                  </p>
+                </Heading>
 
-            {selectedProduct ? (
-              <DetailProducts
-                product={selectedProduct}
-                onClose={handleCloseDetails}
-                onAddToCart={handleAddToCart}
-              />
-            ) : (
-              <ListaProdutos>
-                {products.map((p) => (
-                  <Card key={p.id} onClick={() => handleCardClick(p)}>
-                    {" "}
-                    {/* Adiciona um evento onClick */}
-                    <Figure>
-                      <img src={p.image} alt={p.product_name} />
-                    </Figure>
-                    <CardDetalhes>
-                      <h4>{p.product_name}</h4>
-                      <h5>{p.product_model}</h5>
-                    </CardDetalhes>
-                    <h6>{formatCurrency(p.price) || p.price}</h6>
-                  </Card>
-                ))}
-              </ListaProdutos>
-            )}
-          </Produtos>
-        </Main>
-      </Body>
+                {selectedProduct ? (
+                  <DetailProducts
+                    product={selectedProduct}
+                    onClose={handleCloseDetails}
+                    onAddToCart={handleAddToCart}
+                  />
+                ) : (
+                  <ListaProdutos>
+                    {products.map((p) => (
+                      <Card key={p.id} onClick={() => handleCardClick(p)}>
+                        <Figure>
+                          <img src={p.image} alt={p.product_name} />
+                        </Figure>
+                        <CardDetalhes>
+                          <h4>{p.product_name}</h4>
+                          <h5>{p.product_model}</h5>
+                        </CardDetalhes>
+                        <h6>{formatCurrency(p.price) || p.price}</h6>
+                      </Card>
+                    ))}
+                  </ListaProdutos>
+                )}
+              </Produtos>
+            </Main>
+          </Fade>
+        </Body>
+      </Fade>
     </>
   );
 }

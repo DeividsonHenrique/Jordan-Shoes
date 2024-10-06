@@ -24,22 +24,53 @@ export const ProdutosDetalhes = styled.div`
   grid-template-columns: 2fr 1fr;
   justify-content: center;
   gap: 32px;
+
+  @media (max-width: 850px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  @media (max-width: 550px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const DetalhesImagens = styled.div`
   /* border: 1px solid red; */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-rows: 0fr 0fr;
+  gap: 32px 24px;
 
   figure {
     width: 100%;
     height: 200px;
     background-color: var(--white_soft);
+    border-radius: 20px;
+    box-shadow: 0 10px 15px #ccc;
+    transition: all 0.2s ease;
 
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  @media (max-width: 850px) {
+    gap: 15px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 550px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 478px) {
+    grid-template-columns: 1fr;
   }
 `;
 

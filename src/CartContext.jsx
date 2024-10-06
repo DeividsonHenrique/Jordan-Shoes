@@ -221,6 +221,7 @@ export const LoginProvider = ({ children, openAll }) => {
 
   const handleLogOutAndRedirect = () => {
     handleLogout();
+    cartItems.length = 0;
     navigate("/");
     localStorage.removeItem("Nome do Usuario");
     localStorage.removeItem("compra");

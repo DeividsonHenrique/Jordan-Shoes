@@ -31,6 +31,40 @@ export const TopoMarca = styled.div`
     font-size: 24px;
     font-family: Archivo, sans-serif;
   }
+
+  @media (max-width: 475px) {
+    div {
+      margin-left: 10px;
+    }
+
+    h1 {
+      font-size: 18px;
+    }
+
+    img {
+      margin-right: 5px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    div {
+      margin-left: 20px;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+    img {
+      margin-right: 5px;
+    }
+  }
+
+  @media (max-width: 440px) {
+    h1 {
+      font-size: 14px;
+    }
+  }
 `;
 export const BtnCarrinho = styled.div`
   position: relative;
@@ -47,6 +81,10 @@ export const User = styled(FaUserCircle)`
   &:hover {
     filter: invert(0.5);
   }
+
+  @media (max-width: 550px) {
+    font-size: 24px;
+  }
 `;
 
 export const Abreviar = styled.abbr`
@@ -61,6 +99,10 @@ export const Icone = styled(MdOutlineShoppingCart)`
 
   &:hover {
     filter: invert(0.5);
+  }
+
+  @media (max-width: 550px) {
+    font-size: 24px;
   }
 `;
 
@@ -90,6 +132,18 @@ export const Usuario = styled.span`
   &:hover {
     filter: invert(0.5);
   }
+
+  @media (max-width: 550px) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 330px) {
+    display: none;
+  }
 `;
 
 export const LogOut = styled.span`
@@ -101,5 +155,9 @@ export const LogOut = styled.span`
 
   &:hover {
     filter: invert(0.5);
+  }
+
+  @media (max-width: 400px) {
+    font-size: 14px;
   }
 `;

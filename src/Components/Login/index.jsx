@@ -31,8 +31,6 @@ function Login({ onLogin }) {
 
   return (
     <>
-      {/* modal login */}
-
       {showLoginModal && (
         <LoginContainer onClick={handleContainerClick}>
           <LoginPanel>
@@ -75,9 +73,8 @@ function Login({ onLogin }) {
       )}
       <div className="modal_overlay hidden"></div>
 
-      {/* modal cadastrar */}
       {showRegisterModal && (
-        <LoginContainer>
+        <LoginContainer onClick={handleContainerClick}>
           <LoginPanel>
             <h2>Cadastrar</h2>
             <BtnFechar onClick={onLogin}>X</BtnFechar>

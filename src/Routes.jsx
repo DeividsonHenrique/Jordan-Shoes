@@ -8,13 +8,17 @@ import Identifique from "./Pages/Identifique/index.jsx";
 import Topo from "./Components/Topo/index.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider, FormProvider, LoginProvider } from "./CartContext.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function AppRoutes() {
   const [showLogin, setShowLogin] = useState(false);
   const handleLoginClick = () => {
     setShowLogin(!showLogin);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

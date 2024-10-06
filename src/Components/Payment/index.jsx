@@ -13,14 +13,17 @@ import {
 } from "../../Pages/Cart/style";
 
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../CartContext";
 
 function Payment() {
   const navigate = useNavigate();
+  const { cartItems } = useCart();
   const [card, setCard] = useState({
     cardNumber: "",
     cardName: "",
     cardDate: "",
     cardCvc: "",
+    installment: "",
   });
 
   const hadnlePaymentInputSubmit = (e) => {
@@ -33,76 +36,91 @@ function Payment() {
       usuario: localStorage.getItem("Nome do Usuario"),
       carrinho: localStorage.getItem("compra"),
       cartao: card,
-    }
+    };
 
     localStorage.setItem("pedido", JSON.stringify(pedido));
 
-    navigate("/")
-
-    console.log(pedido)
+    navigate("/");
+    cartItems.length = 0;
+    // console.log(pedido)
     console.log(JSON.parse(localStorage.getItem("pedido")));
   };
 
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setCard((prevCard) => ({
+      ...prevCard,
+      [id]: value,
+    }));
+  };
+
   return (
-    
     <>
       <Topo />
       <IdAndPayment>
-        <input type="button" value="teste" onClick={hadnlePaymentInputSubmit} />
         <h2>Pagamento</h2>
         <p>* campos obrigatórios</p>
 
         <h3>Dados do cartão</h3>
 
-        <form className="form_pagamento">
+        <form className="form_pagamento" onSubmit={hadnlePaymentInputSubmit}>
           <InputId>
-            <label htmlFor="numero_cartao">Número do cartão*</label>
+            <label htmlFor="cardNumber">Número do cartão*</label>
             <InputPay
               type="text"
-              id="numero_cartao"
+              id="cardNumber"
               value={card.cardNumber}
+              onChange={handleInputChange}
               className="input"
               maxLength={16}
               required
             />
           </InputId>
           <InputId>
-            <label htmlFor="nome_impresso">Nome impresso*</label>
+            <label htmlFor="cardName">Nome impresso*</label>
             <InputPay
               type="text"
-              id="nome_impresso"
+              id="cardName"
               value={card.cardName}
+              onChange={handleInputChange}
               className="input"
               required
             />
           </InputId>
           <InputId>
-            <label htmlFor="validade">Validade*</label>
+            <label htmlFor="cardDate">Validade*</label>
             <InputPay
               type="text"
-              id="validade"
+              id="cardDate"
               className="input"
               maxLength={5}
               value={card.cardDate}
+              onChange={handleInputChange}
               placeholder="MM/AA"
               required
             />
           </InputId>
           <InputId>
-            <label htmlFor="codigo_seguranca">Código de Seguranca*</label>
+            <label htmlFor="cardCvc">Código de Seguranca*</label>
             <InputPay
               type="text"
-              id="codigo_seguranca"
+              id="cardCvc"
               className="input"
               maxLength={3}
               value={card.cardCvc}
+              onChange={handleInputChange}
               placeholder="CVV"
               required
             />
           </InputId>
           <InputId>
-            <label htmlFor="numero_parcelas">Número de parcelas</label>
-            <InputSelect id="numero_parcelas" required>
+            <label htmlFor="installment">Número de parcelas</label>
+            <InputSelect
+              id="installment"
+              onChange={handleInputChange}
+              value={card.installment}
+              required
+            >
               <option value="1">À vista</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -120,7 +138,10 @@ function Payment() {
             </label>
           </Bloco>
           <Botao>
-            <BtnFinalizar to="/" className="btn_finalizar_compra">
+            <BtnFinalizar
+              onClick={hadnlePaymentInputSubmit}
+              className="btn_finalizar_compra"
+            >
               Finalizar compra
             </BtnFinalizar>
           </Botao>

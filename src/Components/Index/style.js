@@ -128,6 +128,11 @@ export const Produtos = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 968px) {
+    margin-block: 50px;
+    width: 100%;
+  }
 `;
 
 export const Heading = styled.div`
@@ -181,7 +186,7 @@ export const ListaProdutos = styled.section`
 
   @media (max-width: 768px) {
     margin-block: 32px;
-    gap: 32px;
+    gap: 20px;
   }
 
   @media (max-width: 375px) {
@@ -197,7 +202,6 @@ export const Card = styled.div`
   h4 {
     font-size: 18px;
     line-height: 28px;
-    //ajuste para não quebrar a linha
     white-space: nowrap;
     width: 100%;
     overflow: hidden;
@@ -211,6 +215,9 @@ export const Card = styled.div`
   }
 
   @media (max-width: 768px) {
+    width: 280px;
+    height: 320px;
+
     h6 {
       font-size: 20px;
     }
@@ -220,14 +227,19 @@ export const Figure = styled.figure`
   width: 100%;
   height: 200px;
   background-color: var(--white_soft);
+  border-radius: 20px;
+  box-shadow: 0 10px 20px #ccc;
+  transition: all 0.3s ease;
+  cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
-    cursor: pointer;
-    border: 2px solid var(--brand_color);
+    box-shadow: 0 10px 20px var(--brand_color);
+    border: 1px solid var(--brand_color);
+    outline: none;
   }
 `;
 
@@ -256,5 +268,3 @@ export const CardDetalhes = styled.div`
     }
   }
 `;
-
-// Responsivo
