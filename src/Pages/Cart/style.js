@@ -43,6 +43,11 @@ export const Table = styled.table`
     padding-inline: 10px;
     text-align: center;
   }
+
+  @media (max-width: 630px) {
+    font-size: 14px;
+    line-height: 20px;
+  }
 `;
 
 export const ColunaApagar = styled.td`
@@ -171,6 +176,12 @@ export const BtnContinuar = styled(Link)`
 
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    right: 50%;
+    transform: translateX(50%);
+    width: 80%;
   }
 `;
 
@@ -346,6 +357,24 @@ export const IdAndPayment = styled.section`
     -moz-appearance: none;
     -o-apparence: none;
     appearance: none;
+  }
+
+  @media (max-width: 568px) {
+    padding-inline: 10px;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    p {
+      display: none;
+    }
+
+    h3 {
+      font-size: 18px;
+      text-align: center;
+      margin-block: 10px;
+    }
   }
 `;
 

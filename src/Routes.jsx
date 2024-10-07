@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider, FormProvider, LoginProvider } from "./CartContext.jsx";
 import { useEffect, useState } from "react";
 
+
 function AppRoutes() {
   const [showLogin, setShowLogin] = useState(false);
   const handleLoginClick = () => {

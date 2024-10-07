@@ -23,7 +23,7 @@ function identification() {
   const { complemento, concordo, ...requiredFields } = formData;
   const [touched, setTouched] = useState({});
   const [cep, setCep] = useState("");
-  const [, setEncontrar] = useState({}); //para armazenar os dados do CEP
+  const [, setEncontrar] = useState({});
   const numeroRef = useRef(null);
 
   useEffect(() => {
@@ -37,7 +37,6 @@ function identification() {
           const data = await response.json();
           setEncontrar(data);
 
-          // Atualiza o formData com os dados do CEP
           setFormData((prevData) => ({
             ...prevData,
             endereco: data.logradouro || "",

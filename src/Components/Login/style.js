@@ -9,6 +9,10 @@ export const Input = styled.input`
   font-size: 20px;
   padding-left: 20px;
   border: 2px solid #ccc;
+
+  @media (max-width: 550px) {
+    height: 40px;
+  }
 `;
 
 export const LoginContainer = styled.section`
@@ -33,6 +37,15 @@ export const LoginPanel = styled.div`
   max-width: 350px;
   width: 100%;
   text-align: center;
+  transition: all 0.3s ease;
+
+  @media (max-width: 550px) {
+    max-width: 300px;
+  }
+
+  @media (max-width: 350px) {
+    max-width: 260px;
+  }
 `;
 
 export const InputDiv = styled.div`
@@ -82,6 +95,10 @@ export const BtnEntrar = styled(Link)`
 
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 550px) {
+    height: 40px;
   }
 `;
 
@@ -156,6 +173,10 @@ export const CriarEntrar = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 550px) {
+    width: 70%;
+  }
 `;
 
 export const BtnFazerLogin = styled.button`
@@ -167,6 +188,10 @@ export const BtnFazerLogin = styled.button`
   border: 0;
   cursor: pointer;
   font-size: 16px;
+
+  @media (max-width: 550px) {
+    height: 40px;
+  }
 `;
 export const BtnCriarConta = styled.span`
   width: 100%;
@@ -179,4 +204,8 @@ export const BtnCriarConta = styled.span`
   justify-content: center;
   cursor: pointer;
   font-size: 16px;
+
+  @media (max-width: 550px) {
+    height: 40px;
+  }
 `;
