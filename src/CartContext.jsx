@@ -123,6 +123,7 @@ export const LoginProvider = ({ children, openAll }) => {
   }, [confirmedEmail]);
 
   // parte geral especial para login
+  
 
   const [LoginForm, setLoginForm] = useState({
     email: "",

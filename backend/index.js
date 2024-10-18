@@ -17,7 +17,7 @@ app.post('/register', (req, res) => {
   }
 
   // SQL para inserir os dados no banco
-  const sql = 'INSERT INTO usuarios (email, senha) VALUES (?, ?)';
+  const sql = 'INSERT INTO jordan (email, senha) VALUES (?, ?)';
 
   // Executa o comando SQL, usando o email e a senha fornecidos
   db.query(sql, [email, senha], (err, result) => {
