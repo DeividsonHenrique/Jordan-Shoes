@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // index.js
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -20,7 +21,7 @@ app.post('/register', (req, res) => {
   const sql = 'INSERT INTO jordan (email, senha) VALUES (?, ?)';
 
   // Executa o comando SQL, usando o email e a senha fornecidos
-  db.query(sql, [email, senha], (err, result) => {
+  db.query(sql, [email, senha], (err) => {
     if (err) {
       console.error('Erro ao inserir dados:', err);
       return res.status(500).send('Erro ao registrar o usuário');
